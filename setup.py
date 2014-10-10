@@ -23,7 +23,8 @@ __location__ = os.path.join(os.getcwd(), os.path.dirname(
 
 # Change these settings according to your needs
 MAIN_PACKAGE = "percolate"
-DESCRIPTION = "A Scientific Python package for Monte-Carlo simulation of percolation"
+DESCRIPTION = "A Scientific Python package for Monte-Carlo simulation " \
+    "of percolation"
 LICENSE = "apache"
 URL = "None"
 AUTHOR = "Andreas Sorge"
@@ -35,8 +36,16 @@ JUNIT_XML = False
 
 # Add here all kinds of additional classifiers as defined under
 # https://pypi.python.org/pypi?%3Aaction=list_classifiers
-CLASSIFIERS = ['Development Status :: 4 - Beta',
-               'Programming Language :: Python']
+CLASSIFIERS = [
+    'Development Status :: 3 - Alpha',
+    'Intended Audience :: Science/Research',
+    'License :: OSI Approved :: Apache Software License',
+    'Programming Language :: Python',
+    'Programming Language :: Python :: 2.7',
+    'Programming Language :: Python :: 3.4',
+    'Topic :: Scientific/Engineering :: Mathematics',
+    'Topic :: Scientific/Engineering :: Physics',
+]
 
 # Add here console scripts like ['hello_world = percolate.module:function']
 CONSOLE_SCRIPTS = []
@@ -163,6 +172,7 @@ def setup_package():
     docs_path = os.path.join(__location__, "docs")
     docs_build_path = os.path.join(docs_path, "_build")
     install_reqs = get_install_requirements("requirements.txt")
+    extra_doc_reqs = get_install_requirements("doc-requirements.txt")
 
     command_options = {
         'docs': {'project': ('setup.py', MAIN_PACKAGE),
@@ -199,11 +209,18 @@ def setup_package():
           test_suite='tests',
           packages=setuptools.find_packages(exclude=['tests', 'tests.*']),
           install_requires=install_reqs,
-          setup_requires=['six'],
+          setup_requires=['six', 'setuptools_git>=1.1'],
           cmdclass=cmdclass,
           tests_require=['pytest-cov', 'pytest'],
           command_options=command_options,
-          entry_points={'console_scripts': CONSOLE_SCRIPTS})
+          entry_points={'console_scripts': CONSOLE_SCRIPTS},
+          extras_require={
+              'doc': extra_doc_reqs,
+          },
+          include_package_data=True,  # include everything in source control
+          # but exclude these files
+          exclude_package_data={'': ['.gitignore']},
+          )
 
 if __name__ == "__main__":
     setup_package()
