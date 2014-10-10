@@ -30,10 +30,6 @@ URL = "None"
 AUTHOR = "Andreas Sorge"
 EMAIL = "as@asorge.de"
 
-COVERAGE_XML = False
-COVERAGE_HTML = False
-JUNIT_XML = False
-
 # Add here all kinds of additional classifiers as defined under
 # https://pypi.python.org/pypi?%3Aaction=list_classifiers
 CLASSIFIERS = [
@@ -58,43 +54,24 @@ versioneer.tag_prefix = 'v'  # tags are like v1.2.0
 versioneer.parentdir_prefix = MAIN_PACKAGE + '-'
 
 
-class PyTest(TestCommand):
-    user_options = [("cov=", None, "Run coverage"),
-                    ("cov-xml=", None, "Generate junit xml report"),
-                    ("cov-html=", None, "Generate junit html report"),
-                    ("junitxml=", None, "Generate xml of test results")]
+class Tox(TestCommand):
+
+    user_options = [('tox-args=', 'a', "Arguments to pass to tox")]
 
     def initialize_options(self):
         TestCommand.initialize_options(self)
-        self.cov = None
-        self.cov_xml = False
-        self.cov_html = False
-        self.junitxml = None
-
+        self.tox_args = None
     def finalize_options(self):
         TestCommand.finalize_options(self)
-        if self.cov is not None:
-            self.cov = ["--cov", self.cov, "--cov-report", "term-missing"]
-            if self.cov_xml:
-                self.cov.extend(["--cov-report", "xml"])
-            if self.cov_html:
-                self.cov.extend(["--cov-report", "html"])
-        if self.junitxml is not None:
-            self.junitxml = ["--junitxml", self.junitxml]
-
+        self.test_args = []
+        self.test_suite = True
     def run_tests(self):
-        try:
-            import pytest
-        except:
-            raise RuntimeError("py.test is not installed, "
-                               "run: pip install pytest")
-        params = {"args": self.test_args}
-        if self.cov:
-            params["args"] += self.cov
-            params["plugins"] = ["cov"]
-        if self.junitxml:
-            params["args"] += self.junitxml
-        errno = pytest.main(**params)
+        #import here, cause outside the eggs aren't loaded
+        import tox
+        import shlex
+        errno = tox.cmdline(
+            args=shlex.split(self.tox_args) if self.tox_args else None
+        )
         sys.exit(errno)
 
 
@@ -165,7 +142,7 @@ def setup_package():
     cmdclass = versioneer.get_cmdclass()
     cmdclass['docs'] = sphinx_builder()
     cmdclass['doctest'] = sphinx_builder()
-    cmdclass['test'] = PyTest
+    cmdclass['test'] = Tox
 
     # Some helper variables
     version = versioneer.get_version()
@@ -188,14 +165,8 @@ def setup_package():
                     'config_dir': ('setup.py', docs_path),
                     'source_dir': ('setup.py', docs_path),
                     'builder': ('setup.py', 'doctest')},
-        'test': {'test_suite': ('setup.py', 'tests'),
-                 'cov': ('setup.py', 'percolate')}}
-    if JUNIT_XML:
-        command_options['test']['junitxml'] = ('setup.py', 'junit.xml')
-    if COVERAGE_XML:
-        command_options['test']['cov_xml'] = ('setup.py', True)
-    if COVERAGE_HTML:
-        command_options['test']['cov_html'] = ('setup.py', True)
+        'test': {'test_suite': ('setup.py', 'tests')},
+    }
 
     setup(name=MAIN_PACKAGE,
           version=version,
@@ -211,7 +182,7 @@ def setup_package():
           install_requires=install_reqs,
           setup_requires=['six', 'setuptools_git>=1.1'],
           cmdclass=cmdclass,
-          tests_require=['pytest-cov', 'pytest'],
+          tests_require=['tox'],
           command_options=command_options,
           entry_points={'console_scripts': CONSOLE_SCRIPTS},
           extras_require={
