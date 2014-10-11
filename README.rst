@@ -19,7 +19,7 @@ Scientific Python package for Monte-Carlo simulation of percolation on graphs
 License
 =======
 
-See `LICENSE.txt`_.
+See `LICENSE.txt <LICENSE.txt>`_.
 
 Developing
 ==========
@@ -64,7 +64,8 @@ The documentation also works with `Read the Docs <https://readthedocs.org/>`_.
 
 Add `requirements
 <http://pip.readthedocs.org/en/latest/user_guide.html#requirements-files>`_ for
-building the documentation to the `doc-requirements.txt`_ file.
+building the documentation to the
+`doc-requirements.txt <doc-requirements.txt>`_ file.
 
 Unittest & Coverage
 -------------------
@@ -82,6 +83,6 @@ Requirements Management
 
 Add `requirements
 <http://pip.readthedocs.org/en/latest/user_guide.html#requirements-files>`_ to
-to the `requirements.txt`_ file which will be automatically used by
-``setup.py``.
+to the `requirements.txt <requirements.txt>`_ file which will be automatically
+used by ``setup.py``.
 
