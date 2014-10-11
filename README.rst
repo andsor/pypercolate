@@ -5,10 +5,10 @@ pypercolate
 Scientific Python package for Monte-Carlo simulation of percolation on graphs
 
 .. image:: https://readthedocs.org/projects/pypercolate/badge/?version=latest
-:target: https://readthedocs.org/projects/pypercolate/?badge=latest
-:alt: Documentation Status
+   :target: https://readthedocs.org/projects/pypercolate/?badge=latest
+   :alt: Documentation Status
 
-**Docs**: https://readthedocs.org/projects/pypercolate
+**Docs**: http://pypercolate.readthedocs.org/en/latest
 
 
 Developing
