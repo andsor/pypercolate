@@ -24,9 +24,9 @@ __location__ = os.path.join(os.getcwd(), os.path.dirname(
 # Change these settings according to your needs
 MAIN_PACKAGE = "percolate"
 DESCRIPTION = "A Scientific Python package for Monte-Carlo simulation " \
-    "of percolation"
+    "of percolation on graphs"
 LICENSE = "apache"
-URL = "None"
+URL = "http://github.com/andsor/pypercolate"
 AUTHOR = "Andreas Sorge"
 EMAIL = "as@asorge.de"
 
