@@ -8,7 +8,7 @@ Scientific Python package for Monte-Carlo simulation of percolation on graphs
    :target: https://readthedocs.org/projects/pypercolate/?badge=latest
    :alt: Documentation Status
 
-**Docs**: http://pypercolate.readthedocs.org/en/latest
+**Docs**: `pypercolate.readthedocs.org <http://pypercolate.readthedocs.org>`_
 
 
 Developing
