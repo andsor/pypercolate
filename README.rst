@@ -58,7 +58,8 @@ Sphinx Documentation
 Build the documentation with ``python setup.py docs`` and run doctests with
 ``python setup.py doctest``.
 
-Start editing the file `docs/index.rst`_ to extend the documentation.
+Start editing the file `docs/index.rst <docs/index.rst>`_ to extend the
+documentation.
 
 The documentation also works with `Read the Docs <https://readthedocs.org/>`_.
 
@@ -67,15 +68,29 @@ Add `requirements
 building the documentation to the
 `doc-requirements.txt <doc-requirements.txt>`_ file.
 
+Continuous documentation building
+---------------------------------
+
+For continuously building the documentation, run ``./autodocs.sh``.
+
 Unittest & Coverage
 -------------------
 
 Run ``python setup.py test`` to run all unittests defined in the subfolder
-``tests`` with the help of `tox <http://tox.testrun.org>`_ and `py.test
-<http://pytest.org/>`_.
+``tests`` with the help of `tox <http://tox.testrun.org>`_ and
+`py.test <http://pytest.org/>`_.
 
 The py.test plugin `pytest-cov <https://github.com/schlamar/pytest-cov>`_ is
 used to automatically generate a coverage report. 
+
+Continuous testing
+------------------
+
+For continuous testing in a **Python 2.7** environment, run ``python setup.py
+test --tox-args='-c toxdev.ini -e py27'``.
+
+For continuous testing in a **Python 3.4** environment, run ``python setup.py
+test --tox-args='-c toxdev.ini -e py34'``.
 
 
 Requirements Management
