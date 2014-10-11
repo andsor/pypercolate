@@ -14,6 +14,7 @@ Scientific Python package for Monte-Carlo simulation of percolation on graphs
 
 * **Documentation**: `pypercolate.readthedocs.org <http://pypercolate.readthedocs.org>`_
 * **Repository**: http://github.com/andsor/pypercolate
+* **Read the Docs**: https://readthedocs.org/projects/pypercolate
 
 
 License
@@ -61,7 +62,8 @@ Build the documentation with ``python setup.py docs`` and run doctests with
 Start editing the file `docs/index.rst <docs/index.rst>`_ to extend the
 documentation.
 
-The documentation also works with `Read the Docs <https://readthedocs.org/>`_.
+`Read the Docs <https://readthedocs.org/>`_ hosts the project at
+https://readthedocs.org/projects/pypercolate. 
 
 Add `requirements
 <http://pip.readthedocs.org/en/latest/user_guide.html#requirements-files>`_ for

@@ -8,7 +8,7 @@ Monte-Carlo Simulation of percolation on graphs.
 * **Release**: |release|
 * **Date**: |today|
 * **Author**: Andreas Sorge <as@asorge.de>, Max Planck Institute for Dynamics and
-  Self-Organization, Göttingen, Germany
+  Self-Organization, Goettingen, Germany
 * **Documentation**: http://pypercolate.readthedocs.org
 * **Repository**: http://github.com/andsor/pypercolate
 
