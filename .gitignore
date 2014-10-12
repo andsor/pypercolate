@@ -38,3 +38,5 @@ docs/_build/*
 cover/*
 MANIFEST
 .venv
+.devenv27
+.devenv34
