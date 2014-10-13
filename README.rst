@@ -17,6 +17,12 @@ Scientific Python package for Monte-Carlo simulation of percolation on graphs
 * **Read the Docs**: https://readthedocs.org/projects/pypercolate
 
 
+Requirements and Python 2/3 compatibility
+=========================================
+
+This package runs under **Python 2** and **Python 3**, and has been tested with
+**Python 2.7.6** and **Python 3.4.0**.
+
 License
 =======
 
