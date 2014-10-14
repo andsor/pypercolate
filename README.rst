@@ -103,6 +103,15 @@ and run doctests with ::
 
     $ python setup.py doctest
 
+Alternatively, let `tox`_
+`configure the virtual environment and run sphinx <http://tox.readthedocs.org/en/latest/example/general.html#integrating-sphinx-documentation-checks>`_::
+
+    $ tox -e docs
+
+Add further options separated from tox options by a double dash ``--``::
+
+    $ tox -e docs -- --help
+
 Start editing the file `docs/index.rst <docs/index.rst>`_ to extend the
 documentation.
 
@@ -119,9 +128,9 @@ Add `requirements`_ for building the documentation to the
 Continuous documentation building
 ---------------------------------
 
-For continuously building the documentation, run::
+For continuously building the documentation during development, run::
         
-    $ ./autodocs.sh
+    $ python setup.py autodocs
 
 Unittest & Coverage
 -------------------

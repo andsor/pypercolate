@@ -79,6 +79,15 @@ class Tox(TestCommand):
         sys.exit(errno)
 
 
+class ToxAutoDocs(Tox):
+
+    def finalize_options(self):
+        Tox.finalize_options(self)
+        if self.tox_args is None:
+            self.tox_args = ''
+        self.tox_args += ' -e autodocs '
+
+
 def sphinx_builder():
     try:
         from sphinx.setup_command import BuildDoc
@@ -147,6 +156,7 @@ def setup_package():
     cmdclass['docs'] = sphinx_builder()
     cmdclass['doctest'] = sphinx_builder()
     cmdclass['test'] = Tox
+    cmdclass['autodocs'] = ToxAutoDocs
 
     # Some helper variables
     version = versioneer.get_version()
