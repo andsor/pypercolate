@@ -253,7 +253,7 @@ latex_documents = [
 # If false, no module index is generated.
 # latex_domain_indices = True
 
-# -- External mapping ------------------------------------------------------------
+# -- External mapping ----------------------------------------------------------
 python_version = '.'.join(map(str, sys.version_info[0:2]))
 intersphinx_mapping = {
     'sphinx': ('http://sphinx.pocoo.org', None),
@@ -263,4 +263,7 @@ intersphinx_mapping = {
     'sklearn': ('http://scikit-learn.org/stable', None),
     'pandas': ('http://pandas.pydata.org/pandas-docs/stable', None),
     'scipy': ('http://docs.scipy.org/doc/scipy/reference/', None),
+    'networkx': (
+        'http://networkx.github.io/documentation/latest', None
+    ),
 }
