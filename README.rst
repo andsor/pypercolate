@@ -13,8 +13,9 @@ Scientific Python package for Monte-Carlo simulation of percolation on graphs
    :alt: License
 
 * **Documentation**: `pypercolate.readthedocs.org <http://pypercolate.readthedocs.org>`_
-* **Repository**: http://github.com/andsor/pypercolate
-* **Read the Docs**: https://readthedocs.org/projects/pypercolate
+* **Repository**: `github.com/andsor/pypercolate <http://github.com/andsor/pypercolate>`_
+* **Read the Docs**: `readthedocs.org/projects/pypercolate <https://readthedocs.org/projects/pypercolate>`_
+* **Bibliography**: www.citeulike.org/group/19226
 
 
 Requirements and Python 2/3 compatibility
@@ -27,6 +28,7 @@ License
 =======
 
 See `LICENSE.txt <LICENSE.txt>`_.
+
 
 Developing
 ==========
@@ -167,3 +169,9 @@ Requirements Management
 Add `requirements`_ to the `requirements.txt <requirements.txt>`_ file which
 will be automatically used by ``setup.py``.
 
+Bibliography
+------------
+
+A `CiteULike group`_ manages the bibliography.
+
+.. _CiteULike group: http://www.citeulike.org/group/19226
