@@ -13,18 +13,6 @@ import networkx as nx
 
 '''
 
-References
-----------
-.. [1] Newman, M. E. J. & Ziff, R. M. Fast monte carlo algorithm for site
-    or bond percolation. Physical Review E 64, 016706+ (2001),
-    `doi:10.1103/physreve.64.016706 <http://dx.doi.org/10.1103/physreve.64.016706>`_.
-
-.. [2] Stauffer, D. & Aharony, A. Introduction to Percolation Theory (Taylor &
-   Francis, London, 1994), second edn.
-
-.. [3] Binder, K. & Heermann, D. W. Monte Carlo Simulation in Statistical
-   Physics (Springer, Berlin, Heidelberg, 2010),
-   `doi:10.1007/978-3-642-03163-2 <http://dx.doi.org/10.1007/978-3-642-03163-2>`_.
 '''
 
 def sample_states(graph, spanning_cluster=True, model='bond'):
@@ -101,6 +89,18 @@ def sample_states(graph, spanning_cluster=True, model='bond'):
         The primed sum :math:`\sum'` signifies that the largest cluster is
         excluded from the sum. [3]_
 
+    References
+    ----------
+    .. [1] Newman, M. E. J. & Ziff, R. M. Fast monte carlo algorithm for site
+        or bond percolation. Physical Review E 64, 016706+ (2001),
+        `doi:10.1103/physreve.64.016706 <http://dx.doi.org/10.1103/physreve.64.016706>`_.
+
+    .. [2] Stauffer, D. & Aharony, A. Introduction to Percolation Theory (Taylor &
+       Francis, London, 1994), second edn.
+
+    .. [3] Binder, K. & Heermann, D. W. Monte Carlo Simulation in Statistical
+       Physics (Springer, Berlin, Heidelberg, 2010),
+       `doi:10.1007/978-3-642-03163-2 <http://dx.doi.org/10.1007/978-3-642-03163-2>`_.
     '''
 
     if model != 'bond':
