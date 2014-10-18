@@ -11,6 +11,7 @@ import pytest
 import inspect
 import percolate
 import numpy as np
+import scipy.stats
 
 
 def _test_existence(module, function):
@@ -188,3 +189,91 @@ def test_spanning(state_it):
         assert (
             state['has_spanning_cluster'] == has_spanning_cluster[state['n']]
         )
+
+
+def test_microcanonical_averages_existence():
+    assert _test_existence(percolate, 'microcanonical_averages')
+
+
+def test_microcanonical_averages_signature():
+    _test_signature(
+        percolate.microcanonical_averages,
+        ['graph', 'runs', 'spanning_cluster', 'model', 'alpha']
+    )
+
+
+def test_microcanonical_averages_noninteger_runs(grid_3x3_graph):
+    with pytest.raises(ValueError):
+        next(percolate.microcanonical_averages(
+            grid_3x3_graph, runs='many'
+        ))
+
+
+def test_microcanonical_averages_nonpositive_runs(grid_3x3_graph):
+    with pytest.raises(ValueError):
+        next(percolate.microcanonical_averages(
+            grid_3x3_graph, runs=0
+        ))
+
+
+def test_microcanonical_averages_nonfloat_alpha(grid_3x3_graph):
+    with pytest.raises(ValueError):
+        next(percolate.microcanonical_averages(
+            grid_3x3_graph, alpha='huge'
+        ))
+
+
+def test_microcanonical_averages_zero_alpha(grid_3x3_graph):
+    with pytest.raises(ValueError):
+        next(percolate.microcanonical_averages(
+            grid_3x3_graph, alpha=0.0
+        ))
+
+
+def test_microcanonical_averages_initial_iteration(grid_3x3_graph):
+
+    spanning_cluster = grid_3x3_graph.graph['span']
+
+    ret = next(percolate.microcanonical_averages(
+        grid_3x3_graph, spanning_cluster=spanning_cluster
+    ))
+
+    assert ret['n'] == 0
+    assert ret['max_cluster_size'] == 1.0
+    np.testing.assert_allclose(
+        ret['max_cluster_size_ci'], np.ones(2)
+    )
+    np.testing.assert_allclose(
+        ret['moments'], np.ones(5) * 8
+    )
+    np.testing.assert_allclose(
+        ret['moments_ci'], np.ones((5, 2)) * 8
+    )
+
+    assert ('spanning_cluster' in ret) == spanning_cluster
+    assert ('spanning_cluster_ci' in ret) == spanning_cluster
+
+    if spanning_cluster:
+        assert ret['spanning_cluster'] == 1 / 42
+        np.testing.assert_allclose(
+            np.array([0, 1]) + np.array([1, -1]) *
+            scipy.stats.beta.cdf(
+                ret['spanning_cluster_ci'], a=1, b=41
+            ),
+            scipy.stats.norm.cdf(-1) * np.ones(2)
+        )
+
+
+def test_microcanonical_averages_number_of_iterations(grid_3x3_graph):
+
+    spanning_cluster = grid_3x3_graph.graph['span']
+
+    n = 0
+
+    for microcanonical_average in percolate.microcanonical_averages(
+        grid_3x3_graph, spanning_cluster=spanning_cluster
+    ):
+        assert microcanonical_average['n'] == n
+        n += 1
+
+    assert microcanonical_average['n'] == 12
