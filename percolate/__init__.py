@@ -12,4 +12,6 @@ from ._version import get_versions
 __version__ = get_versions()['version']
 del get_versions
 
-from percolate.percolate import sample_states, microcanonical_averages
+from percolate.percolate import (
+    sample_states, microcanonical_averages, statistics
+)

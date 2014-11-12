@@ -217,6 +217,7 @@ def sample_states(graph, spanning_cluster=True, model='bond', copy_result=True):
         # draw new edge from permutation
         edge_index = perm_edges[n]
         edge = perc_edges[edge_index]
+        ret['edge'] = edge
 
         # find roots and weights
         roots = [ ds[node] for node in edge ]
@@ -265,6 +266,51 @@ def sample_states(graph, spanning_cluster=True, model='bond', copy_result=True):
             yield copy.deepcopy(ret)
         else:
             yield ret
+
+
+def single_run_arrays(spanning_cluster=True, **kwargs):
+    r'''
+    Generate statistics for a single run
+    '''
+
+    # initial iteration
+    # we do not need a copy of the result dictionary since we copy the values
+    # anyway
+    kwargs['copy_result'] = False
+    ret = dict()
+
+    for n, state in enumerate(sample_states(
+        spanning_cluster=spanning_cluster, **kwargs
+    )):
+
+        # merge cluster statistics
+        if 'N' in ret:
+            assert ret['N'] == state['N']
+        else:
+            ret['N'] = state['N']
+
+        if 'M' in ret:
+            assert ret['M'] == state['M']
+        else:
+            ret['M'] = state['M']
+            number_of_states = state['M'] + 1
+            max_cluster_size = np.empty(number_of_states)
+            if spanning_cluster:
+                has_spanning_cluster = np.empty(number_of_states, dtype=np.bool)
+            moments = np.empty((5, number_of_states))
+
+        max_cluster_size[n] = state['max_cluster_size']
+        for k in range(5):
+            moments[k, n] = state['moments'][k]
+        if spanning_cluster:
+            has_spanning_cluster[n] = state['has_spanning_cluster']
+
+    ret['max_cluster_size'] = max_cluster_size
+    ret['moments'] = moments
+    if spanning_cluster:
+        ret['has_spanning_cluster'] = has_spanning_cluster
+
+    return ret
 
 
 def microcanonical_average_spanning_cluster(has_spanning_cluster, alpha):
@@ -650,6 +696,23 @@ def microcanonical_averages_arrays(microcanonical_averages):
     return ret
 
 
+def binomial_pmf(n, p):
+
+    ret = np.empty(n + 1)
+
+    nmax = int(np.round(p * n))
+
+    ret[nmax] = 1.0
+
+    for i in range(nmax + 1, n + 1):
+        ret[i] = ret[i - 1] * (n - i + 1.0) / i * p / (1.0 - p)
+
+    for i in range(nmax - 1, -1, -1):
+        ret[i] = ret[i + 1] * (i + 1.0) / (n - i) * (1.0 - p) / p
+
+    return ret / ret.sum()
+
+
 def canonical_averages(ps, microcanonical_averages_arrays):
 
     num_sites = microcanonical_averages_arrays['N']
@@ -673,7 +736,8 @@ def canonical_averages(ps, microcanonical_averages_arrays):
     ret['moments_ci'] = np.empty((5, ps.size, 2))
 
     for p_index, p in enumerate(ps):
-        binomials = scipy.stats.binom.pmf(np.arange(num_edges + 1), n=num_edges, p=p)
+#        binomials = scipy.stats.binom.pmf(np.arange(num_edges + 1), n=num_edges, p=p)
+        binomials = binomial_pmf(n=num_edges, p=p)
 
         for key, value in microcanonical_averages_arrays.items():
             if len(key) <= 1:
