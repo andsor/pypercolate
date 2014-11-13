@@ -635,6 +635,17 @@ def microcanonical_averages(
             yield ret
 
 
+def spanning_1d_chain(length):
+    ret = nx.grid_graph(dim=[length + 2])
+
+    ret.node[0]['span'] = 0
+    ret[0][1]['span'] = 0
+    ret.node[length + 1]['span'] = 1
+    ret[length][length + 1]['span'] = 1
+
+    return ret
+
+
 def spanning_2d_grid(length):
     ret = nx.grid_2d_graph(length + 2, length)
 
