@@ -715,11 +715,15 @@ def binomial_pmf(n, p):
 
     ret[nmax] = 1.0
 
+    old_settings = np.seterr(under='ignore')  #seterr to known value
+
     for i in range(nmax + 1, n + 1):
         ret[i] = ret[i - 1] * (n - i + 1.0) / i * p / (1.0 - p)
 
     for i in range(nmax - 1, -1, -1):
         ret[i] = ret[i + 1] * (i + 1.0) / (n - i) * (1.0 - p) / p
+
+    np.seterr(**old_settings)  # reset to default
 
     return ret / ret.sum()
 
