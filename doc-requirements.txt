@@ -2,4 +2,4 @@ Sphinx
 six
 sphinx-rtd-theme
 sphinxcontrib-bibtex
-sphinxcontrib-napoleon
+sphinxcontrib-napoleon==0.2.11
