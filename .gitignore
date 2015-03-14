@@ -40,3 +40,5 @@ MANIFEST
 .venv
 .devenv27
 .devenv34
+.eggs
+docs/.ipynb_checkpoints
