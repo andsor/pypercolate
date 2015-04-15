@@ -34,7 +34,7 @@ subprocess.call(cmd_line, shell=True)
 # -- General configuration -----------------------------------------------------
 
 # If your documentation needs a minimal Sphinx version, state it here.
-# needs_sphinx = '1.0'
+needs_sphinx = '1.3'
 
 # Add any Sphinx extension module names here, as strings. They can be extensions
 # coming with Sphinx (named 'sphinx.ext.*') or your custom ones.
@@ -49,7 +49,7 @@ extensions = [
     'sphinx.ext.ifconfig',
     'sphinx.ext.viewcode',
     'sphinxcontrib.bibtex',
-    'sphinxcontrib.napoleon',
+    'sphinx.ext.napoleon',
 ]
 
 autosummary_generate = True
@@ -68,7 +68,7 @@ master_doc = 'index'
 
 # General information about the project.
 project = u'pypercolate'
-copyright = u'2014, Andreas Sorge'
+copyright = u'2014--2015, Andreas Sorge'
 
 # The version info for the project you're documenting, acts as replacement for
 # |version| and |release|, also used in various other places throughout the

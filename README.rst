@@ -97,6 +97,9 @@ The version will be ``unknown`` until you have added a first tag.
 Sphinx Documentation
 --------------------
 
+This project follows the `NumPy documentation style
+<https://github.com/numpy/numpy/blob/master/doc/HOWTO_DOCUMENT.rst.txt>`_.
+
 Build the documentation with ::
         
     $ python setup.py docs
