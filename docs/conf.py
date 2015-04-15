@@ -110,14 +110,40 @@ pygments_style = 'sphinx'
 
 # -- Options for HTML output ---------------------------------------------------
 
+# on_rtd is whether we are on readthedocs.org
+import os
+on_rtd = os.environ.get('READTHEDOCS', None) == 'True'
+
+if not on_rtd:  # only import and set the theme if we're building docs locally
+    import sphinx_rtd_theme
+    html_theme = 'sphinx_rtd_theme'
+    html_theme_path = [sphinx_rtd_theme.get_html_theme_path()]
+
+# otherwise, readthedocs.org uses their theme by default, so no need to specify it
+
 # The theme to use for HTML and HTML Help pages.  See the documentation for
 # a list of builtin themes.
-html_theme = 'default'
+# html_theme = 'alabaster'
 
 # Theme options are theme-specific and customize the look and feel of a theme
 # further.  For a list of options available for each theme, see the
 # documentation.
-# html_theme_options = {}
+from collections import OrderedDict
+
+extra_nav_links = OrderedDict()
+extra_nav_links['Package'] = 'http://pypi.python.org/pypi/percolate'
+extra_nav_links['Repository'] = 'http://github.com/andsor/pypercolate'
+extra_nav_links['Issues'] = 'http://github.com/andsor/pypercolate/issues'
+extra_nav_links['Bibliography'] = 'http://www.citeulike.org/group/19226'
+
+html_theme_options = {
+#    'logo': 'pypercolate-logo-plain.svg',
+#    'logo_name': True,
+#    'description': 'A scientific Python package for Monte Carlo simulation of percolation on graphs',
+#    'github_user': 'andsor',
+#    'github_repo': 'pypercolate',
+#    'extra_nav_links': extra_nav_links,
+}
 
 # Add any paths that contain custom themes here, relative to this directory.
 # html_theme_path = []
@@ -131,12 +157,14 @@ except ImportError:
 else:
     release = version
 
+html_title = 'pypercolate documentation'
+
 # A shorter title for the navigation bar.  Default is the same as html_title.
 # html_short_title = None
 
 # The name of an image file (relative to this directory) to place at the top
 # of the sidebar.
-# html_logo = ""
+# html_logo = "_static/pypercolate-logo-plain.svg"
 
 # The name of an image file (within the static path) to use as favicon of the
 # docs.  This file should be a Windows icon file (.ico) being 16x16 or 32x32
@@ -157,7 +185,11 @@ html_static_path = ['_static']
 # html_use_smartypants = True
 
 # Custom sidebar templates, maps document names to template names.
-# html_sidebars = {}
+# html_sidebars = {
+#    '**': [
+#        'about.html', 'navigation.html', 'searchbox.html',
+#    ]
+#}
 
 # Additional templates that should be rendered to pages, maps page names to
 # template names.
@@ -176,7 +208,7 @@ html_static_path = ['_static']
 # html_show_sourcelink = True
 
 # If true, "Created using Sphinx" is shown in the HTML footer. Default is True.
-# html_show_sphinx = True
+html_show_sphinx = False
 
 # If true, "(C) Copyright ..." is shown in the HTML footer. Default is True.
 html_show_copyright = False
