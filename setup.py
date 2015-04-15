@@ -474,16 +474,17 @@ def setup_package():
     docs_path = os.path.join(__location__, "docs")
     docs_build_path = os.path.join(docs_path, "_build")
     install_reqs = get_install_requirements("requirements.txt")
-    extra_doc_reqs = get_install_requirements("doc-requirements.txt")
     metadata, console_scripts = read_setup_cfg()
 
     command_options = {
-        'docs': {'project': ('setup.py', package),
-                 'version': ('setup.py', version.split('-', 1)[0]),
-                 'release': ('setup.py', version),
-                 'build_dir': ('setup.py', docs_build_path),
-                 'config_dir': ('setup.py', docs_path),
-                 'source_dir': ('setup.py', docs_path)},
+        'docs': {
+            # 'project': ('setup.py', package),
+            'version': ('setup.py', version.split('-', 1)[0]),
+            'release': ('setup.py', version),
+            'build_dir': ('setup.py', docs_build_path),
+            'config_dir': ('setup.py', docs_path),
+            'source_dir': ('setup.py', docs_path)
+        },
         'doctest': {'project': ('setup.py', package),
                     'version': ('setup.py', version.split('-', 1)[0]),
                     'release': ('setup.py', version),
@@ -509,7 +510,7 @@ def setup_package():
           install_requires=install_reqs,
           setup_requires=['six', 'setuptools_git>=1.1'],
           cmdclass=cmdclass,
-          tests_require=['tox', 'pytest-cov', 'pytest'],
+          tests_require=['tox'],
           package_data={package: metadata['package_data']},
           data_files=[('.', metadata['data_files'])],
           command_options=command_options,
