@@ -58,8 +58,3 @@ This documentation is licensed under a `Creative Commons Attribution 4.0 Interna
    User Guide <user>
    Developer Guide <developer>
    reference
-
-
-* :ref:`genindex`
-* :ref:`modindex`
-* :ref:`search`
