@@ -41,8 +41,12 @@ Contents
 .. toctree::
    :maxdepth: 2
 
-   License <license>
-   Module Reference <_rst/modules>
+   About <about>
+   Setup <setup>
+   Tutorial <tutorial>
+   User Guide <user>
+   Developer Guide <developer>
+   Reference <_rst/modules>
 
 Indices and tables
 ==================
