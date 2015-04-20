@@ -1,4 +1,5 @@
-Sphinx>=1.3
+Sphinx<1.3
 six
 sphinx-rtd-theme
 sphinxcontrib-bibtex
+sphinxcontrib-napoleon
