@@ -29,7 +29,7 @@ Andreas Sorge <pypercolate@asorge.de>
    .. image:: _static/zenodo.pdf
 
 Please cite the pypercolate package as: Andreas Sorge. (2015). pypercolate
-|release|. Zenodo. 10.5281/zenodo.16962 (`BibTEX
+v0.1.4. Zenodo. 10.5281/zenodo.16962 (`BibTEX
 <https://zenodo.org/record/16962/export/hx>`_)
 
 .. image:: _static/cc-by.*
@@ -57,7 +57,7 @@ This documentation is licensed under a `Creative Commons Attribution 4.0 Interna
    Tutorial <tutorial>
    User Guide <user>
    Developer Guide <developer>
-   Reference <_rst/percolate>
+   reference
 
 
 * :ref:`genindex`
