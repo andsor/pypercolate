@@ -7,4 +7,4 @@ the terms of the `Apache License 2.0`_:
 
 .. _Apache License 2.0: http://www.apache.org/licenses/LICENSE-2.0.html
 
-.. literalinclude:: ../LICENSE.txt
+.. include:: ../LICENSE.txt
