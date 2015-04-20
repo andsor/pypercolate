@@ -242,7 +242,7 @@ def version_from_git(tag_prefix, root, verbose=False):
         print("no git found")
         return None
     try:
-        tag = next(git("describe", "--tags", "--dirty", "--always"))
+        tag = next(git("describe", "--tags", "--always"))
     except subprocess.CalledProcessError:
         return None
     if not tag.startswith(tag_prefix):
