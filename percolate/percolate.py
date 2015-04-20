@@ -1,6 +1,10 @@
 #!/usr/bin/env python
 # encoding: utf-8
 
+"""
+
+"""
+
 from __future__ import (absolute_import, division,
                         print_function, unicode_literals)
 from future.builtins import (ascii, bytes, chr, dict, filter, hex, input,
@@ -13,9 +17,6 @@ import scipy.stats
 import networkx as nx
 
 
-'''
-
-'''
 
 alpha_1sigma = 2 * scipy.stats.norm.cdf(-1.0)
 
