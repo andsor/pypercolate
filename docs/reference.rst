@@ -1,5 +1,9 @@
 Reference
 =========
 
-.. include:: _rst/percolate.rst
-   :start-line: 2
+.. toctree::
+   :maxdepth: 1
+
+   reference-percolate
+   reference-percolate-percolate
+
