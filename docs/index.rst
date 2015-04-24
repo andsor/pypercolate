@@ -16,7 +16,7 @@ Welcome to pypercolate!
 
    About <about>
    Setup <setup>
-   Tutorial <tutorial>
+   Tutorial <tutorial-bond-square-lattice>
    User Guide <user>
    Developer Guide <developer>
    reference

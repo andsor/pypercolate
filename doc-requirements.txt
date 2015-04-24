@@ -3,7 +3,5 @@ six
 sphinx-rtd-theme
 sphinxcontrib-bibtex
 sphinxcontrib-napoleon
-ipython
-matplotlib
-numpy
+ipython[nbconvert]
 releases

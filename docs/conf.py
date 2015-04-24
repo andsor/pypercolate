@@ -27,6 +27,14 @@ cmd_line_template = "sphinx-apidoc -f -o {outputdir} {moduledir}"
 cmd_line = cmd_line_template.format(outputdir=output_dir, moduledir=module_dir)
 apidoc.main(cmd_line.split(" "))
 
+# convert tutorial to rst
+import subprocess
+
+subprocess.call(
+    "ipython nbconvert --to rst tutorial-bond-square-lattice.ipynb",
+    shell=True
+)
+
 # If extensions (or modules to document with autodoc) are in another directory,
 # add these directories to sys.path here. If the directory is relative to the
 # documentation root, use os.path.abspath to make it absolute, like shown here.

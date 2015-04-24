@@ -1040,6 +1040,10 @@ def canonical_averages(ps, microcanonical_averages_arrays):
     """
     Compute the canonical cluster statistics from microcanonical statistics
 
+    This is according to Newman and Ziff, Equation (2).
+    Note that we also simply average the bounds of the confidence intervals
+    according to this formula.
+
     Parameters
     ----------
 
