@@ -150,3 +150,7 @@ Bibliography
 A `CiteULike group`_ manages the bibliography.
 
 .. _CiteULike group: http://www.citeulike.org/group/19226
+
+To download the bibliography, run ::
+
+    $ doit download_bib
