@@ -42,3 +42,4 @@ MANIFEST
 .devenv34
 .eggs
 docs/.ipynb_checkpoints
+.doit.db

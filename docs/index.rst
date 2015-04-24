@@ -20,3 +20,4 @@ Welcome to pypercolate!
    User Guide <user>
    Developer Guide <developer>
    reference
+   zreferences
