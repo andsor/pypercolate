@@ -88,7 +88,7 @@ class ToxAutoDocs(Tox):
         Tox.finalize_options(self)
         if self.tox_args is None:
             self.tox_args = ''
-        self.tox_args += ' -e autodocs '
+        self.tox_args += ' -e autodocs --develop '
 
 
 def sphinx_builder():

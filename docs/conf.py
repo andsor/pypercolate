@@ -43,9 +43,15 @@ extensions = ['sphinx.ext.autodoc', 'sphinx.ext.intersphinx', 'sphinx.ext.todo',
               'sphinx.ext.autosummary', 'sphinx.ext.viewcode', 'sphinx.ext.coverage',
               'sphinx.ext.doctest', 'sphinx.ext.ifconfig',
               'sphinx.ext.mathjax', 'sphinxcontrib.bibtex',
-              'sphinxcontrib.napoleon']
+              'sphinxcontrib.napoleon',
+              'IPython.sphinxext.ipython_console_highlighting',
+              'IPython.sphinxext.ipython_directive',
+              'releases',
+              ]
 
 todo_include_todos = True
+
+releases_github_path = 'andsor/pypercolate'
 
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ['_templates']
