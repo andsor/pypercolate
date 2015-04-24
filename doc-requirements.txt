@@ -3,5 +3,5 @@ six
 sphinx-rtd-theme
 sphinxcontrib-bibtex
 sphinxcontrib-napoleon
-ipython[nbconvert]
+ipython[nbconvert]>=3.1
 releases
