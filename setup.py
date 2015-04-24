@@ -492,8 +492,11 @@ def setup_package():
                     'config_dir': ('setup.py', docs_path),
                     'source_dir': ('setup.py', docs_path),
                     'builder': ('setup.py', 'doctest')},
-        'test': {'test_suite': ('setup.py', 'tests'),
-                 'cov': ('setup.py', root_pkg)}}
+        'test': {
+            'test_suite': ('setup.py', 'tests'),
+            # 'cov': ('setup.py', root_pkg)
+        }
+    }
 
     setup(name=package,
           version=version,

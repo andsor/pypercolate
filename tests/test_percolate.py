@@ -282,13 +282,13 @@ def test_microcanonical_averages_number_of_iterations(grid_3x3_graph):
 def test_binomials_normalized():
 
     np.testing.assert_allclose(
-        percolate.percolate.binomial_pmf(1000, 0.01).sum(), 1.0
+        percolate.percolate._binomial_pmf(1000, 0.01).sum(), 1.0
     )
 
 
 def test_binomials_close_to_scipy():
 
     np.testing.assert_allclose(
-        percolate.percolate.binomial_pmf(100, 0.1),
+        percolate.percolate._binomial_pmf(100, 0.1),
         scipy.stats.binom.pmf(np.arange(101), n=100, p=0.1)
     )
