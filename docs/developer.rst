@@ -116,7 +116,7 @@ Run ::
 
     $ python setup.py test
     
-to run all unittests defined in the subfolder ``tests`` with the help of `tox`_
+to run all unittests defined in the subfolder ``test`` with the help of `tox`_
 and `py.test`_.
 
 .. _py.test: http://pytest.org
