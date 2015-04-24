@@ -7,20 +7,19 @@ Implements the Newman-Ziff algorithm for Monte Carlo simulation of percolation
 This module implements the Newman-Ziff algorithm for Monte Carlo simulation of
 Bernoulli percolation on arbitrary graphs.
 
-High-level functions
---------------------
-
 The :mod:`percolate` module provides these high-level functions from the
 :mod:`percolate.percolate` module:
 
-- :func:`sample_states`
-- :func:`single_run_arrays`
-- :func:`microcanonical_averages`
-- :func:`microcanonical_averages_arrays`
-- :func:`canonical_averages`
-- :func:`spanning_1d_chain`
-- :func:`spanning_2d_grid`
-- :func:`statistics`
+.. autosummary::
+
+   percolate.sample_states
+   percolate.single_run_arrays
+   percolate.microcanonical_averages
+   percolate.microcanonical_averages_arrays
+   percolate.canonical_averages
+   percolate.spanning_1d_chain
+   percolate.spanning_2d_grid
+   percolate.statistics
 
 See Also
 --------
@@ -77,16 +76,6 @@ __ https://github.com/andsor/pypercolate/issues/5
    `Implement wrapping detection`__
 
 __ https://github.com/andsor/pypercolate/issues/6
-
-
-.. autofunction:: sample_states
-.. autofunction:: single_run_arrays
-.. autofunction:: microcanonical_averages
-.. autofunction:: microcanonical_averages_arrays
-.. autofunction:: canonical_averages
-.. autofunction:: spanning_1d_chain
-.. autofunction:: spanning_2d_grid
-.. autofunction:: statistics
 
 """
 
