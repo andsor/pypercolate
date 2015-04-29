@@ -502,7 +502,7 @@ latex_logo = "_static/pypercolate-logo-cropped.pdf"
 # latex_appendices = []
 
 # If false, no module index is generated.
-# latex_domain_indices = True
+latex_domain_indices = False
 
 # -- External mapping ------------------------------------------------------------
 python_version = '.'.join(map(str, sys.version_info[0:2]))
