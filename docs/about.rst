@@ -9,4 +9,10 @@ About pypercolate
    :maxdepth: 2
 
    License <license>
-   Changelog <changelog>
+
+.. only:: not latex
+
+   .. toctree::
+      :maxdepth: 2
+
+      Changelog <changelog>
