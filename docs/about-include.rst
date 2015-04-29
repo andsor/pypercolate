@@ -12,16 +12,16 @@ Andreas Sorge <pypercolate@asorge.de>
 
 .. only:: not latex
 
-   .. image:: _static/zenodo.*
-      :target: http://dx.doi.org/10.5281/zenodo.16962
+   .. image:: https://zenodo.org/badge/6089/andsor/pypercolate.svg
+      :target: http://dx.doi.org/10.5281/zenodo.17241
 
 .. only:: latex
 
-   .. image:: _static/zenodo.pdf
+   .. image:: https://zenodo.org/badge/6089/andsor/pypercolate.svg
 
 Please cite the pypercolate package as: Andreas Sorge. (2015). pypercolate
-v0.1.4. Zenodo. 10.5281/zenodo.16962 (`BibTEX
-<https://zenodo.org/record/16962/export/hx>`_)
+v0.2. Zenodo. 10.5281/zenodo.17241 (`BibTEX
+<https://zenodo.org/record/17241/export/hx>`_)
 
 .. image:: _static/cc-by.*
 
