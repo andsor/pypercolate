@@ -23,7 +23,8 @@ This global connection is a continuous "chain" or "cluster" of locally
 connected objects, which is unbounded in size (in infinite systems), or of the
 order of the system size (in finite systems).
 
-Typically, percolation also refers to a stochastic process of increasing connectivity and eventual emergence of the giant cluster.
+Typically, percolation also refers to a stochastic process of increasing
+connectivity and eventual emergence of the giant cluster.
 In an infinite system, this emergence in an ensemble of system configurations
 constitutes a phase transition.
 In fact, percolation is a phase transition paradigm
@@ -35,7 +36,8 @@ The setting of percolation is a graph.
 A typical setting is a regular lattice of sites connected to their nearest
 neighbors.
 In *site percolation*, all sites are subsequently *occupied*.
-In *bond percolation*, it is the bonds that are subsequently added to form a giant cluster of connected sites.
+In *bond percolation*, it is the bonds that are subsequently added to form a
+giant cluster of connected sites.
 
 In the following, we introduce the concepts and notation mainly according to
 Stauffer's and Aharony's classical textbook :cite:`Stauffer1994Introduction`.
@@ -43,15 +45,11 @@ Stauffer's and Aharony's classical textbook :cite:`Stauffer1994Introduction`.
 The cluster size distribution
 -----------------------------
 
-**Definition**:
 In the regular lattice setting, a *cluster* is a maximum set of occupied sites
 which are pairwise joined by paths on the lattice only traversing occupied
 sites.
 In general, a *cluster* is component of the graph.
-
-**Definition**:
 The *size* :math:`s` of a cluster is the number of nodes in the component.
-
 Note that infinite graphs allow for infinite cluster sizes.
 
 The occupation of sites, or the cluster sizes, typically depend on a (global)
@@ -81,7 +79,7 @@ This definition also applies to systems of infinite size as
 
    n_s(\varrho) = \lim_{L \to \infty} \frac{N_s(\varrho,L)}{L}.
 
-*The cluster size distribution :math:`n_s` is the fundamental quantity in
+*The cluster size distribution* :math:`n_s` *is the fundamental quantity in
 percolation theory*.
 
 Percolation threshold and characteristic cluster size
@@ -112,7 +110,7 @@ In the infinite system, the limit strength :math:`P(\varrho) = \lim_{L \to
 \infty} P(\varrho, L)` is the typical *order parameter* of the percolation
 transition.
 
-The cluster number distribution typically is of the form
+The cluster size distribution typically is of the form
 
 .. math::
 
@@ -165,9 +163,9 @@ For any given site of any given finite cluster, the average size
 
 .. math::
 
-   S(\varrho, L) = \sum_{s=1}^\infty s w_s(\varrho, L) = \frac{1}{p(\varrho, L}
-   \sum_{s=1}^\infty s^2 n_s(\varrho, L) = \frac{M_2(\varrho, L)}{M_1(\varrho,
-   L)},
+   S(\varrho, L) = \sum_{s=1}^\infty s w_s(\varrho, L) = \frac{1}{p(\varrho,
+   L)} \sum_{s=1}^\infty s^2 n_s(\varrho, L) = \frac{M_2(\varrho,
+   L)}{M_1(\varrho, L)},
 
 which is the second moment divided by the first moment of the cluster size
 distribution.
@@ -189,13 +187,12 @@ nevertheless diverges as
 with the *critical exponent* :math:`\gamma`.
 As :math:`S` is the second moment of the cluster size distribution (up to a
 factor), it is a measure of fluctuations in the system.
-*Thus, divergence of :math:`S` actually defines the percolation phase
+*Thus, divergence of* :math:`S` *actually defines the percolation phase
 transition.*
 
 Correlation length
 ------------------
 
-**Definition**:
 The *correlation function* :math:`g(\mathbf{r})` is the probability that a site
 at position :math:`\mathbf{r}` from an occupied site in a *finite* cluster
 belongs to the same cluster.
@@ -203,12 +200,6 @@ belongs to the same cluster.
 Typically, for large :math:`r \equiv |\mathbf{r}|`, there is an exponential
 cutoff, i.e. :math:`g(\mathbf{r}) \sim e^{-r/\xi}`, at the *correlation length*
 :math:`\xi`.
-Another critical exponent :math:`\nu` determines the divergence of :math:`\xi`
-at the critical point as
-
-.. math::
-
-   \xi \sim |\varrho - \varrho_c|^{-\nu} \qquad (\varrho \to \varrho_c).
 
 **Definition**:
 The *correlation length* :math:`\xi` is defined as
@@ -219,7 +210,8 @@ The *correlation length* :math:`\xi` is defined as
    g(\mathbf{r})}.
 
 For a cluster of size :math:`s`, its *radius of gyration* :math:`R_s` is
-defined as the average square distance to the cluster center of mass :cite:`Stauffer1994Introduction`.
+defined as the average square distance to the cluster center of mass
+:cite:`Stauffer1994Introduction`.
 It turns out that :math:`2 R_s^2` is the average square distance between two
 sites of the same (finite) cluster.
 Averaging over :math:`2R_s^2` yields the squared correlation length
@@ -244,8 +236,8 @@ As such, this is the one and only length scale which characterizes the behavior
 of an infinite system in the critical region :cite:`Stauffer1994Introduction`.
 
 The correlation length :math:`\xi` defines the relevant length scale.
-As :math:`\xi` diverges at :math:`\varrho \to \varrho_c`, the length scale
-vanishes at the percolation transition :math:`\varrho = \varrho_c`.
+As :math:`\xi` diverges at :math:`\varrho \to \varrho_c`, a length scale
+is absent at the percolation transition :math:`\varrho = \varrho_c`.
 This lack of a relevant length scale is a typical example of *scale
 invariance*.
 This implies that the system appears to be self-similar on length scales
@@ -296,11 +288,30 @@ s_\xi(\varrho) \sim |(\varrho - \varrho_c) s^\sigma |^{1/\sigma}`, and hence
 .. math::
 
    n_s(\varrho) \sim s^{-\tau} f((\varrho - \varrho_c) s^\sigma), \qquad
-   (\varrho \to \varrho_c, s \gg 1).
+   (\varrho \to \varrho_c, s \gg 1),
+
+with some scaling function :math:`f` which rapidly decays to zero, :math:`f(x)
+\to 0` for :math:`|x| > 1` (:math:`s > s_\xi`)
+:cite:`Stauffer1994Introduction`.
+
+It remains to determine the scaling relationship of cluster radius :math:`R_s`
+and cluster size :math:`s` in the critical region.
+For :math:`s \sim R_s^D` for some possibly fractal cluster dimension :math:`D`,
+we have :cite:`Stauffer1994Introduction`
+
+.. math::
+
+   \frac{1}{D} = \sigma \nu.
+
+The cutoff cluster size :math:`s_\xi` was the *crossover size* separating
+critical behavior (:math:`n_s \sim s^{-\tau}`) from non-critical behavior
+(:math:`n_s \to 0` exponentially fast).
+Now, the correlation length :math:`\xi \sim s_\xi^{1/D} = s_\xi^{\sigma \nu}`
+is the *crossover length* separating the critical and non-critical regimes.
 
 The following scaling law relates the system dimensionality :math:`d` and the
 fractal dimensionality :math:`D = \frac{1}{\sigma \nu}` of the infinite cluster
-to the exponents of the cluster size distribution :cite:`Hunt2014Percolation`.
+to the exponents of the cluster size distribution :cite:`Hunt2014Percolation`:
 
 .. math::
 
@@ -355,28 +366,3 @@ These are the *scaling relations* between the critical exponents, which all
 derive from the exponents :math:`\tau` and :math:`\sigma` of the cluster size
 distribution.
 
-Cluster numbers typically scale as
-
-.. math::
-
-   n_s(\varrho) \sim s^{-\tau} f((\varrho - \varrho_c) s^\sigma), \qquad
-   (\varrho \to \varrho_c, s \to \infty)
-
-with some scaling function :math:`f` which rapidly decays to zero, :math:`f(x)
-\to 0` for :math:`|x| > 1` (:math:`s > s_\xi`)
-:cite:`Stauffer1994Introduction`.
-
-It remains to determine the scaling relationship of cluster radius :math:`R_s`
-and cluster size :math:`s` in the critical region.
-For :math:`s \sim R_s^D` for some possibly fractal cluster dimension :math:`D`,
-we have :cite:`Stauffer1994Introduction`
-
-.. math::
-
-   \frac{1}{D} = \sigma \nu.
-
-The cutoff cluster size :math:`s_\xi` was the *crossover size* separating
-critical behavior (:math:`n_s \sim s^{-\tau}`) from non-critical behavior
-(:math:`n_s \to 0` exponentially fast).
-Now, the correlation length :math:`\xi \sim s_\xi^{1/D} = s_\xi^{\sigma \nu}`
-is the *crossover length* separating the critical and non-critical regimes.
