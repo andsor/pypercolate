@@ -1,4 +1,0 @@
-include *.txt
-include *.rst
-recursive-include percolate *.py *.c *.h *.pxd *.pyx
-recursive-include docs *.rst *.py
