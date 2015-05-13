@@ -1,13 +1,13 @@
 Changelog
 =========
 
-* :release:`0.2.4 <2015-05-13>`
+* :release:`v0.2.4 <2015-05-13>`
 * :bug:`9` Fix documentation and move it to github pages
-* :release:`0.2.3 <2015-04-30>`
+* :release:`v0.2.3 <2015-04-30>`
 * :bug:`0` Fix setup.cfg classifiers
-* :release:`0.2.2 <2015-04-30>`
+* :release:`v0.2.2 <2015-04-30>`
 * :bug:`0` Change author email
-* :release:`0.2.1 <2015-04-29>`
+* :release:`v0.2.1 <2015-04-29>`
 * :bug:`0` Update Zenodo DOI
-* :release:`0.2.0 <2015-04-25>`
+* :release:`v0.2.0 <2015-04-25>`
 * :feature:`0` Basic functionality
