@@ -2,7 +2,6 @@ Developer Guide
 ===============
 
 * **Repository**: `github.com/andsor/pypercolate <http://github.com/andsor/pypercolate>`_
-* **Read the Docs**: `readthedocs.org/projects/pypercolate <https://readthedocs.org/projects/pypercolate>`_
 * **Bibliography**: `www.citeulike.org/group/19226 <http://www.citeulike.org/group/19226>`_
 
 Development environment
@@ -92,22 +91,30 @@ Add further options separated from tox options by a double dash ``--``::
 Start editing the file `docs/index.rst <docs/index.rst>`_ to extend the
 documentation.
 
-`Read the Docs`_ hosts the project at
-https://readthedocs.org/projects/pypercolate. 
-
-.. _Read the Docs:  http://readthedocs.org/
-
 Add `requirements`_ for building the documentation to the
 `doc-requirements.txt <doc-requirements.txt>`_ file.
 
 .. _requirements: http://pip.readthedocs.org/en/latest/user_guide.html#requirements-files
+
+Uploading documentation to GitHub pages
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Run::
+
+   $ ghp-import -n -p docs/_build/html
+
+or::
+
+   $ doit upload_doc
+
+to upload the built HTML documentation to GitHub pages.   
 
 Continuous documentation building
 ---------------------------------
 
 For continuously building the documentation during development, run::
         
-    $ python setup.py autodocs
+    $ tox -e autodocs
 
 Unittest & Coverage
 -------------------

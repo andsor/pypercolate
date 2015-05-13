@@ -2,11 +2,6 @@
 Welcome to pypercolate!
 =======================
 
-.. only:: html
-
-   .. image:: _static/pypercolate-logo-cropped-plain.svg
-      :width: 25%
-
 .. only:: not latex
 
    .. include:: about-include.rst

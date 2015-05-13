@@ -1,8 +1,6 @@
 **pypercolate** is a scientific Python package that implements the `Newman-Ziff
 algorithm`_ for Monte Carlo simulation of percolation on graphs.
 
-`Package (Download)`_ | `Development`_ | `Archive`_ | `Issues`_ | `Bibliography`_
-
 |today| (Version |release|)
 
 Andreas Sorge <pypercolate@asorge.de>

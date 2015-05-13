@@ -478,7 +478,7 @@ def setup_package():
 
     command_options = {
         'docs': {
-            # 'project': ('setup.py', package),
+            'project': ('setup.py', 'pypercolate'),
             'version': ('setup.py', version.split('-', 1)[0]),
             'release': ('setup.py', version),
             'build_dir': ('setup.py', docs_build_path),

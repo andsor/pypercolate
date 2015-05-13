@@ -1,6 +1,8 @@
 Changelog
 =========
 
+* :release:`0.2.4 <2015-05-13>`
+* :bug:`9` Fix documentation and move it to github pages
 * :release:`0.2.3 <2015-04-30>`
 * :bug:`0` Fix setup.cfg classifiers
 * :release:`0.2.2 <2015-04-30>`
