@@ -1,8 +1,9 @@
-[![Linux Build Status](https://travis-ci.org/palantir/tslint.svg?branch=master)](https://travis-ci.org/palantir/tslint)
-
 ===========
 pypercolate
 ===========
+
+.. image:: https://travis-ci.org/andsor/pypercolate.svg?branch=master
+    :target: https://travis-ci.org/andsor/pypercolate
 
 Scientific Python package for Monte-Carlo simulation of percolation on graphs
 
