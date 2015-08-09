@@ -3,7 +3,6 @@ language: python
 python:
   - "2.7"
   - "3.4"
-  - "nightly"
 
 before_install:
   # download miniconda (for Python 2 or Python 3)
@@ -14,24 +13,29 @@ before_install:
   - export PATH=/home/travis/miniconda/bin:$PATH
   # update conda package manager
   - conda update --yes conda
-
-install:
   # create virtual environment
   - conda create -n testenv --yes --file requirements.txt python=$TRAVIS_PYTHON_VERSION
   # activate environment
   - source activate testenv
   # install test tools
   - conda install --yes pytest
+  - pip install pytest-cov
+  - pip install coveralls
   # debugging info
   - echo $PATH
   - which python
+  - which pip
+  - which py.test
   - python --version
   - conda info
   - conda list
+
+install:
   # install package
   - python setup.py install
 
 script: 
-  # debugging info
-  - which py.test
-  - py.test percolate
+  - py.test
+
+after_success:
+  - if [ $TRAVIS_PYTHON_VERSION=='3.4' ]; then coveralls; fi
