@@ -1,0 +1,5 @@
+strictness: high
+doc-warnings: True
+max-line-length: 80
+ignore-paths:
+  - percolate/_version.py
