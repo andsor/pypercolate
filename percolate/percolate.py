@@ -1017,6 +1017,7 @@ def _binomial_pmf(n, p):
 
     """
 
+    n = int(n)
     ret = np.empty(n + 1)
 
     nmax = int(np.round(p * n))
