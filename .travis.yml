@@ -3,7 +3,6 @@ language: python
 python:
   - "2.7"
   - "3.4"
-  - "3.5"
   - "nightly"
 
 before_install:
@@ -21,6 +20,8 @@ install:
   - conda create -n testenv --yes --file requirements.txt python=$TRAVIS_PYTHON_VERSION
   # activate environment
   - source activate testenv
+  # install test tools
+  - conda install --yes pytest
   # debugging info
   - echo $PATH
   - which python
@@ -30,4 +31,7 @@ install:
   # install package
   - python setup.py install
 
-script: "py.test percolate"
+script: 
+  # debugging info
+  - which py.test
+  - py.test percolate
