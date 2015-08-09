@@ -24,6 +24,13 @@ pypercolate
 .. image:: https://img.shields.io/pypi/l/percolate.svg
   :target: https://pypi.python.org/pypi/percolate
 
+.. image:: https://img.shields.io/github/release/andsor/pypercolate.svg
+  :target: https://github.com/andsor/pypercolate/releases/latest
+
+.. image:: https://img.shields.io/github/tag/andsor/pypercolate.svg
+  :target: https://github.com/andsor/pypercolate/tags
+
+
 Scientific Python package for Monte-Carlo simulation of percolation on graphs
 
 * **Documentation**: http://andsor.github.io/pypercolate 
