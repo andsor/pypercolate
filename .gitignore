@@ -43,3 +43,4 @@ MANIFEST
 .eggs
 docs/.ipynb_checkpoints
 .doit.db
+.hypothesis
