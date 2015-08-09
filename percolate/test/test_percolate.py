@@ -72,6 +72,7 @@ def grid_3x3_graph(request):
     ret.graph['span'] = request.param
     return ret
 
+
 def test_sample_state_not_implemented_model(empty_graph):
     with pytest.raises(ValueError):
         next(percolate.sample_states(empty_graph, model='site'))
