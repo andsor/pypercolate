@@ -2,7 +2,9 @@
 [run]
 branch = True
 source = percolate
-omit = */_version.py
+omit =
+    */_version.py
+    */test/*
 
 [report]
 # Regexes for lines to exclude from consideration
