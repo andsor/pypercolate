@@ -1,6 +1,8 @@
 Changelog
 =========
 
+* :release:`v0.3.0 <2015-08-09>`
+* :feature:`0` Configure Travis, Coveralls, Landscape continuous integration
 * :release:`v0.2.5 <2015-05-13>`
 * :bug:`0` Fix changelog
 * :release:`v0.2.4 <2015-05-13>`
