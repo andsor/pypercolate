@@ -19,7 +19,7 @@ before_install:
   - source activate testenv
   # install test tools
   - conda install --yes pytest
-  - pip install pytest-cov
+  - pip install pytest-cov pytest-pep8
   - pip install coveralls
   # debugging info
   - echo $PATH
