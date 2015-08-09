@@ -4,6 +4,7 @@ branch = True
 source = percolate
 omit =
     */test/*
+    */percolate/share/*
 
 [report]
 # Regexes for lines to exclude from consideration
