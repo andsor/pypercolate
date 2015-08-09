@@ -8,6 +8,10 @@ pypercolate
 .. image:: https://coveralls.io/repos/andsor/pypercolate/badge.svg?branch=master&service=github
     :target: https://coveralls.io/github/andsor/pypercolate?branch=master
 
+.. image:: https://landscape.io/github/andsor/pypercolate/master/landscape.svg?style=flat
+   :target: https://landscape.io/github/andsor/pypercolate/master
+   :alt: Code Health
+  
 Scientific Python package for Monte-Carlo simulation of percolation on graphs
 
 * **Documentation**: http://andsor.github.io/pypercolate 
