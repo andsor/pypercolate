@@ -18,9 +18,15 @@ before_install:
 
 install:
   # create virtual environment
-  - conda create -n testenv --yes --file requirements.txt
+  - conda create -n testenv --yes --file requirements.txt python=$TRAVIS_PYTHON_VERSION
   # activate environment
   - source activate testenv
+  # debugging info
+  - echo $PATH
+  - which python
+  - python --version
+  - conda info
+  - conda list
   # install package
   - python setup.py install
 
