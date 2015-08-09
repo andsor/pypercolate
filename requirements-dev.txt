@@ -4,6 +4,7 @@
 doit
 ipdb
 ipython[notebook,nbconvert]
+jug
 matplotlib
 memory_profiler
 pre-commit
