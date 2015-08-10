@@ -2,3 +2,4 @@ future
 numpy
 scipy
 networkx
+simoa
