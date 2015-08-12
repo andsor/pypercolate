@@ -37,47 +37,18 @@ UINT32_MAX = 4294967296
 ALPHA = 2 * scipy.stats.norm.cdf(-1.0)  # 1 sigma
 
 
-# in general:
-# avoid premature optimization: design simulation for large system sizes
-# (small system sizes take much less time anyway)
-for dimension in SYSTEM_DIMENSIONS:
-    # building the graph takes ca. 10s per 10^6 nodes
-    '''
-    >>> import timeit
-    >>> timeit.timeit(
-    ...     stmt='percolate.spanning_2d_grid(1000)',
-    ...     setup='import percolate',
-    ...     number=1
-    ... )
-    >>>
-    '''
-
-
 @TaskGenerator
 def prepare_percolation_graph(dimension):
     graph = percolate.spanning_2d_grid(length=dimension)
-    (
-        perc_graph,
-        num_nodes,
-        num_edges,
-        auxiliary_node_attributes,
-        auxiliary_edge_attributes,
-    ) = percolate.hpc.percolation_graph(
+    return percolate.percolate.percolation_graph(
         graph=graph, spanning_cluster=SPANNING_CLUSTER
-    )
-    return (
-        perc_graph,
-        num_nodes,
-        num_edges,
-        auxiliary_node_attributes,
-        auxiliary_edge_attributes,
     )
 
 
 @TaskGenerator
 def compute_convolution_factors_for_single_p(perc_graph_result, p):
     return percolate.percolate._binomial_pmf(
-        n=perc_graph_result[2],
+        n=perc_graph_result['num_edges'],
         p=p,
     )
 
@@ -87,22 +58,8 @@ def bond_run(perc_graph_result, seed, ps, convolution_factors_tasks):
     Perform a single run (realization) over all microstates and return the
     macrocanonical cluster statistics
     """
-    (
-        perc_graph,
-        num_nodes,
-        num_edges,
-        auxiliary_node_attributes,
-        auxiliary_edge_attributes,
-    ) = perc_graph_result
-
     microcanonical_statistics = percolate.hpc.bond_microcanonical_statistics(
-        perc_graph=perc_graph,
-        num_nodes=num_nodes,
-        num_edges=num_edges,
-        seed=seed,
-        spanning_cluster=SPANNING_CLUSTER,
-        auxiliary_node_attributes=auxiliary_node_attributes,
-        auxiliary_edge_attributes=auxiliary_edge_attributes,
+        seed=seed, **perc_graph_result
     )
 
     # initialize statistics array
@@ -288,7 +245,7 @@ for dimension in SYSTEM_DIMENSIONS:
     # finalize macrocanonical averages
     final_macrocanonical_averages[dimension] = Task(
         percolate.hpc.finalize_macrocanonical_averages,
-        number_of_nodes=perc_graph_results[dimension][1],
+        number_of_nodes=perc_graph_results[dimension]['num_nodes'],
         ps=PS,
         macrocanonical_averages=reduced_macrocanonical_averages[dimension],
         alpha=ALPHA,
