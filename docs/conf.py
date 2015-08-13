@@ -22,7 +22,7 @@ class Mock(MagicMock):
     def __getattr__(cls, name):
         return Mock()
 
-MOCK_MODULES = ['numpy', 'scipy', 'scipy.stats', 'matplotlib']
+MOCK_MODULES = ['numpy', 'scipy', 'scipy.stats', 'matplotlib', 'networkx', 'future']
 sys.modules.update((mod_name, Mock()) for mod_name in MOCK_MODULES)
 
 import alabaster
