@@ -42,6 +42,10 @@ pypercolate
   :target: https://github.com/andsor/pypercolate/issues
   :alt: Open Issues on GitHub
 
+.. image:: https://readthedocs.org/projects/pypercolate/?badge=stable
+  :target: http://pypercolate.readthedocs.org
+  :alt: Documentation
+
 Scientific Python package for Monte-Carlo simulation of percolation on graphs
 
 * **Documentation**: http://pypercolate.readthedocs.org
