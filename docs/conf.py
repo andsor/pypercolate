@@ -13,6 +13,11 @@ import os
 import inspect
 from sphinx import apidoc
 
+
+# Are we building on ReadTheDocs?
+on_rtd = os.environ.get('READTHEDOCS', None) == 'True'
+
+
 # mock modules for Read the Docs
 # http://read-the-docs.readthedocs.org/en/latest/faq.html#i-get-import-errors-on-libraries-that-depend-on-c-modules
 from unittest.mock import MagicMock
@@ -43,8 +48,14 @@ apidoc.main(cmd_line.split(" "))
 # convert tutorial to rst
 import subprocess
 
+IPYTHON = (
+    'ipython' if not on_rtd
+    else
+    '/home/docs/checkouts/readthedocs.org/user_builds/pypercolate/envs/latest/bin/ipython3'
+)
+
 subprocess.call(
-    "ipython3 nbconvert --to rst tutorial-bond-square-lattice.ipynb",
+    "{} nbconvert --to rst tutorial-bond-square-lattice.ipynb".format(IPYTHON),
     shell=True
 )
 
