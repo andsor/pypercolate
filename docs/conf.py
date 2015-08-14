@@ -44,7 +44,7 @@ apidoc.main(cmd_line.split(" "))
 import subprocess
 
 subprocess.call(
-    "ipython nbconvert --to rst tutorial-bond-square-lattice.ipynb",
+    "ipython3 nbconvert --to rst tutorial-bond-square-lattice.ipynb",
     shell=True
 )
 
