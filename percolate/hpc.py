@@ -52,7 +52,7 @@ def microcanonical_statistics_dtype(spanning_cluster=True):
     See Also
     --------
     http://docs.scipy.org/doc/numpy/user/basics.rec.html
-    macrocanonical_statistics_dtype
+    canonical_statistics_dtype
     """
     fields = list()
     fields.extend([
@@ -402,9 +402,9 @@ def bond_microcanonical_statistics(
     )
 
 
-def macrocanonical_statistics_dtype(spanning_cluster=True):
+def canonical_statistics_dtype(spanning_cluster=True):
     """
-    The NumPy Structured Array type for macrocanonical statistics
+    The NumPy Structured Array type for canonical statistics
 
     Helper function
 
@@ -424,7 +424,7 @@ def macrocanonical_statistics_dtype(spanning_cluster=True):
     --------
     http://docs.scipy.org/doc/numpy/user/basics.rec.html
     microcanoncial_statistics_dtype
-    macrocanonical_averages_dtype
+    canonical_averages_dtype
     """
     fields = list()
     if spanning_cluster:
@@ -438,13 +438,13 @@ def macrocanonical_statistics_dtype(spanning_cluster=True):
     return _ndarray_dtype(fields)
 
 
-def bond_macrocanonical_statistics(
+def bond_canonical_statistics(
     microcanonical_statistics,
     convolution_factors,
     **kwargs
 ):
     """
-    Macrocanonical cluster statistics for a single run and a single probability
+    canonical cluster statistics for a single run and a single probability
 
     Parameters
     ----------
@@ -460,7 +460,7 @@ def bond_macrocanonical_statistics(
     -------
     ret : ndarray of size ``1``
         Structured array with dtype as returned by
-        `macrocanonical_statistics_dtype`
+        `canonical_statistics_dtype`
 
     ret['percolation_probability'] : ndarray of float
         The "percolation probability" of this run at the value of ``p``.
@@ -480,14 +480,14 @@ def bond_macrocanonical_statistics(
     --------
 
     bond_microcanonical_statistics
-    macrocanonical_statistics_dtype
+    canonical_statistics_dtype
 
     """
     # initialize return array
     spanning_cluster = (
         'has_spanning_cluster' in microcanonical_statistics.dtype.names
     )
-    ret = np.empty(1, dtype=macrocanonical_statistics_dtype(spanning_cluster))
+    ret = np.empty(1, dtype=canonical_statistics_dtype(spanning_cluster))
 
     # compute percolation probability
     if spanning_cluster:
@@ -513,9 +513,9 @@ def bond_macrocanonical_statistics(
     return ret
 
 
-def macrocanonical_averages_dtype(spanning_cluster=True):
+def canonical_averages_dtype(spanning_cluster=True):
     """
-    The NumPy Structured Array type for macrocanonical averages over several
+    The NumPy Structured Array type for canonical averages over several
     runs
 
     Helper function
@@ -535,8 +535,8 @@ def macrocanonical_averages_dtype(spanning_cluster=True):
     See Also
     --------
     http://docs.scipy.org/doc/numpy/user/basics.rec.html
-    macrocanonical_statistics_dtype
-    finalized_macrocanonical_averages_dtype
+    canonical_statistics_dtype
+    finalized_canonical_averages_dtype
     """
     fields = list()
     fields.extend([
@@ -556,78 +556,78 @@ def macrocanonical_averages_dtype(spanning_cluster=True):
     return _ndarray_dtype(fields)
 
 
-def bond_initialize_macrocanonical_averages(
-    macrocanonical_statistics, **kwargs
+def bond_initialize_canonical_averages(
+    canonical_statistics, **kwargs
 ):
     """
-    Initialize the macrocanonical averages from a single-run cluster statistics
+    Initialize the canonical averages from a single-run cluster statistics
 
     Parameters
     ----------
-    macrocanonical_statistics : 1-D structured ndarray
-        Typically contains the macrocanonical statistics for a range of values
+    canonical_statistics : 1-D structured ndarray
+        Typically contains the canonical statistics for a range of values
         of the occupation probability ``p``.
-        The dtype is the result of `macrocanonical_statistics_dtype`.
+        The dtype is the result of `canonical_statistics_dtype`.
 
     Returns
     -------
     ret : structured ndarray
-        The dype is the result of `macrocanonical_averages_dtype`.
+        The dype is the result of `canonical_averages_dtype`.
 
     ret['number_of_runs'] : 1-D ndarray of int
         Equals ``1`` (initial run).
 
     ret['percolation_probability_mean'] : 1-D array of float
-        Equals ``macrocanonical_statistics['percolation_probability']``
+        Equals ``canonical_statistics['percolation_probability']``
         (if ``percolation_probability`` is present)
 
     ret['percolation_probability_m2'] : 1-D array of float
         Each entry is ``0.0``
 
     ret['max_cluster_size_mean'] : 1-D array of float
-        Equals ``macrocanonical_statistics['max_cluster_size']``
+        Equals ``canonical_statistics['max_cluster_size']``
 
     ret['max_cluster_size_m2'] : 1-D array of float
         Each entry is ``0.0``
 
     ret['moments_mean'] : 2-D array of float
-        Equals ``macrocanonical_statistics['moments']``
+        Equals ``canonical_statistics['moments']``
 
     ret['moments_m2'] : 2-D array of float
         Each entry is ``0.0``
 
     See Also
     --------
-    macrocanonical_averages_dtype
-    bond_macrocanonical_statistics
+    canonical_averages_dtype
+    bond_canonical_statistics
 
     """
     # initialize return array
     spanning_cluster = (
-        'percolation_probability' in macrocanonical_statistics.dtype.names
+        'percolation_probability' in canonical_statistics.dtype.names
     )
     # array should have the same size as the input array
     ret = np.empty_like(
-        macrocanonical_statistics,
-        dtype=macrocanonical_averages_dtype(spanning_cluster=spanning_cluster),
+        canonical_statistics,
+        dtype=canonical_averages_dtype(spanning_cluster=spanning_cluster),
     )
     ret['number_of_runs'] = 1
 
     # initialize percolation probability mean and sum of squared differences
     if spanning_cluster:
         ret['percolation_probability_mean'] = (
-            macrocanonical_statistics['percolation_probability']
+            canonical_statistics['percolation_probability']
         )
         ret['percolation_probability_m2'] = 0.0
 
     # initialize maximum cluster size mean and sum of squared differences
     ret['max_cluster_size_mean'] = (
-        macrocanonical_statistics['max_cluster_size']
+        canonical_statistics['max_cluster_size']
     )
     ret['max_cluster_size_m2'] = 0.0
 
     # initialize moments means and sums of squared differences
-    ret['moments_mean'] = macrocanonical_statistics['moments']
+    ret['moments_mean'] = canonical_statistics['moments']
     ret['moments_m2'] = 0.0
 
     return ret
@@ -635,7 +635,7 @@ def bond_initialize_macrocanonical_averages(
 
 def bond_reduce(row_a, row_b):
     """
-    Reduce the macrocanonical averages over several runs
+    Reduce the canonical averages over several runs
 
     This is a "true" reducer.
     It is associative and commutative.
@@ -646,17 +646,17 @@ def bond_reduce(row_a, row_b):
     ----------
     row_a, row_b : structured ndarrays
         Output of this function, or initial input from
-        `bond_initialize_macrocanonical_averages`
+        `bond_initialize_canonical_averages`
 
     Returns
     -------
     ret : structured ndarray
-        Array is of dtype as returned by `macrocanonical_averages_dtype`
+        Array is of dtype as returned by `canonical_averages_dtype`
 
     See Also
     --------
-    bond_initialize_macrocanonical_averages
-    macrocanonical_averages_dtype
+    bond_initialize_canonical_averages
+    canonical_averages_dtype
     simoa.stats.online_variance
     """
     spanning_cluster = (
@@ -700,9 +700,9 @@ def bond_reduce(row_a, row_b):
     return ret
 
 
-def finalized_macrocanonical_averages_dtype(spanning_cluster=True):
+def finalized_canonical_averages_dtype(spanning_cluster=True):
     """
-    The NumPy Structured Array type for finalized macrocanonical averages over
+    The NumPy Structured Array type for finalized canonical averages over
     several runs
 
     Helper function
@@ -722,7 +722,7 @@ def finalized_macrocanonical_averages_dtype(spanning_cluster=True):
     See Also
     --------
     http://docs.scipy.org/doc/numpy/user/basics.rec.html
-    macrocanonical_averages_dtype
+    canonical_averages_dtype
     """
     fields = list()
     fields.extend([
@@ -747,31 +747,31 @@ def finalized_macrocanonical_averages_dtype(spanning_cluster=True):
     return _ndarray_dtype(fields)
 
 
-def finalize_macrocanonical_averages(
-    number_of_nodes, ps, macrocanonical_averages, alpha,
+def finalize_canonical_averages(
+    number_of_nodes, ps, canonical_averages, alpha,
 ):
     """
-    Finalize macrocanonical averages
+    Finalize canonical averages
     """
 
     spanning_cluster = (
         (
             'percolation_probability_mean' in
-            macrocanonical_averages.dtype.names
+            canonical_averages.dtype.names
         ) and
-        'percolation_probability_m2' in macrocanonical_averages.dtype.names
+        'percolation_probability_m2' in canonical_averages.dtype.names
     )
 
     # append values of p as an additional field
     ret = np.empty_like(
-        macrocanonical_averages,
-        dtype=finalized_macrocanonical_averages_dtype(
+        canonical_averages,
+        dtype=finalized_canonical_averages_dtype(
             spanning_cluster=spanning_cluster
         ),
     )
 
-    n = macrocanonical_averages['number_of_runs']
-    sqrt_n = np.sqrt(macrocanonical_averages['number_of_runs'])
+    n = canonical_averages['number_of_runs']
+    sqrt_n = np.sqrt(canonical_averages['number_of_runs'])
 
     ret['number_of_runs'] = n
     ret['p'] = ps
@@ -793,12 +793,12 @@ def finalize_macrocanonical_averages(
         key_ci = '{}_ci'.format(final_key)
 
         # calculate sample mean
-        ret[keys_mean[1]] = macrocanonical_averages[keys_mean[0]]
+        ret[keys_mean[1]] = canonical_averages[keys_mean[0]]
         if normalize:
             ret[keys_mean[1]] /= number_of_nodes
 
         # calculate sample standard deviation
-        array = macrocanonical_averages[keys_std[0]]
+        array = canonical_averages[keys_std[0]]
         result = np.sqrt(
             (array.T if transpose else array) / (n - 1)
         )

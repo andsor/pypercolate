@@ -34,6 +34,7 @@ NUMBER_OF_RUNS = NUMBER_OF_TASKS * RUNS_PER_TASK
 PS = np.linspace(0.4, 0.6, num=40)
 SPANNING_CLUSTER = True
 UINT32_MAX = 4294967296
+SEED = 201508061904 % UINT32_MAX
 ALPHA = 2 * scipy.stats.norm.cdf(-1.0)  # 1 sigma
 
 
@@ -56,24 +57,24 @@ def compute_convolution_factors_for_single_p(perc_graph_result, p):
 def bond_run(perc_graph_result, seed, ps, convolution_factors_tasks):
     """
     Perform a single run (realization) over all microstates and return the
-    macrocanonical cluster statistics
+    canonical cluster statistics
     """
     microcanonical_statistics = percolate.hpc.bond_microcanonical_statistics(
         seed=seed, **perc_graph_result
     )
 
     # initialize statistics array
-    macrocanonical_statistics = np.empty(
+    canonical_statistics = np.empty(
         ps.size,
-        dtype=percolate.hpc.macrocanonical_statistics_dtype(
+        dtype=percolate.hpc.canonical_statistics_dtype(
             spanning_cluster=SPANNING_CLUSTER,
         )
     )
 
-    # loop over all p's and convolve macrocanonical statistics
+    # loop over all p's and convolve canonical statistics
     # http://docs.scipy.org/doc/numpy/reference/arrays.nditer.html#modifying-array-values
     for row, convolution_factors_task in zip(
-        np.nditer(macrocanonical_statistics, op_flags=['writeonly']),
+        np.nditer(canonical_statistics, op_flags=['writeonly']),
         convolution_factors_tasks,
     ):
         # load task result
@@ -83,8 +84,8 @@ def bond_run(perc_graph_result, seed, ps, convolution_factors_tasks):
         # fetch task result
         my_convolution_factors = convolution_factors_task.result
 
-        # convolve to macrocanonical statistics
-        row[...] = percolate.hpc.bond_macrocanonical_statistics(
+        # convolve to canonical statistics
+        row[...] = percolate.hpc.bond_canonical_statistics(
             microcanonical_statistics=microcanonical_statistics,
             convolution_factors=my_convolution_factors,
             spanning_cluster=SPANNING_CLUSTER,
@@ -93,9 +94,9 @@ def bond_run(perc_graph_result, seed, ps, convolution_factors_tasks):
         # http://jug.readthedocs.org/en/latest/api.html#jug.Task.unload
         convolution_factors_task.unload()
 
-    # initialize macrocanonical averages for reduce
-    ret = percolate.hpc.bond_initialize_macrocanonical_averages(
-        macrocanonical_statistics=macrocanonical_statistics,
+    # initialize canonical averages for reduce
+    ret = percolate.hpc.bond_initialize_canonical_averages(
+        canonical_statistics=canonical_statistics,
         spanning_cluster=SPANNING_CLUSTER,
     )
 
@@ -135,7 +136,7 @@ def bond_task(
 
 
 @TaskGenerator
-def write_to_disk(dimension, macrocanonical_averages):
+def write_to_disk(dimension, canonical_averages):
     import h5py
 
     # Read/write if exsits, create otherwise
@@ -149,7 +150,7 @@ def write_to_disk(dimension, macrocanonical_averages):
 
     f.create_dataset(
         name=key,
-        data=macrocanonical_averages,
+        data=canonical_averages,
     )
 
     f.close()
@@ -164,11 +165,11 @@ def dummy_hash(x):
 
 convolution_factors = {}
 perc_graph_results = {}
-reduced_macrocanonical_averages = {}
-final_macrocanonical_averages = {}
+reduced_canonical_averages = {}
+final_canonical_averages = {}
 
 # initialize random number generator
-rng = np.random.RandomState(seed=201508061904 % UINT32_MAX)
+rng = np.random.RandomState(seed=SEED)
 
 
 # in general:
@@ -236,23 +237,23 @@ for dimension in SYSTEM_DIMENSIONS:
         )
 
     # reduce
-    reduced_macrocanonical_averages[dimension] = jug.mapreduce.reduce(
+    reduced_canonical_averages[dimension] = jug.mapreduce.reduce(
         reducer=percolate.hpc.bond_reduce,
         inputs=bond_tasks,
         reduce_step=100,
     )
 
-    # finalize macrocanonical averages
-    final_macrocanonical_averages[dimension] = Task(
-        percolate.hpc.finalize_macrocanonical_averages,
+    # finalize canonical averages
+    final_canonical_averages[dimension] = Task(
+        percolate.hpc.finalize_canonical_averages,
         number_of_nodes=perc_graph_results[dimension]['num_nodes'],
         ps=PS,
-        macrocanonical_averages=reduced_macrocanonical_averages[dimension],
+        canonical_averages=reduced_canonical_averages[dimension],
         alpha=ALPHA,
     )
 
     # write to disk
     write_to_disk(
         dimension=dimension,
-        macrocanonical_averages=final_macrocanonical_averages[dimension],
+        canonical_averages=final_canonical_averages[dimension],
     )

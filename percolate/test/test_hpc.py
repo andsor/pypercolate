@@ -82,16 +82,16 @@ def test_microcanonical_statistics_dtype_spanning_cluster(spanning_cluster):
 
 
 @pytest.mark.parametrize("spanning_cluster", [True, False])
-def test_macrocanonical_statistics_dtype(spanning_cluster):
-    dtype = percolate.hpc.macrocanonical_statistics_dtype(
+def test_canonical_statistics_dtype(spanning_cluster):
+    dtype = percolate.hpc.canonical_statistics_dtype(
         spanning_cluster=spanning_cluster
     )
     np.empty(1, dtype=dtype)
 
 
 @pytest.mark.parametrize("spanning_cluster", [True, False])
-def test_macrocanonical_statistics_dtype_spanning_cluster(spanning_cluster):
-    dtype = percolate.hpc.macrocanonical_statistics_dtype(
+def test_canonical_statistics_dtype_spanning_cluster(spanning_cluster):
+    dtype = percolate.hpc.canonical_statistics_dtype(
         spanning_cluster=spanning_cluster
     )
     array = np.empty(1, dtype=dtype)
@@ -99,16 +99,16 @@ def test_macrocanonical_statistics_dtype_spanning_cluster(spanning_cluster):
 
 
 @pytest.mark.parametrize("spanning_cluster", [True, False])
-def test_macrocanonical_averages_dtype(spanning_cluster):
-    dtype = percolate.hpc.macrocanonical_averages_dtype(
+def test_canonical_averages_dtype(spanning_cluster):
+    dtype = percolate.hpc.canonical_averages_dtype(
         spanning_cluster=spanning_cluster
     )
     np.empty(1, dtype=dtype)
 
 
 @pytest.mark.parametrize("spanning_cluster", [True, False])
-def test_macrocanonical_averages_dtype_spanning_cluster(spanning_cluster):
-    dtype = percolate.hpc.macrocanonical_averages_dtype(
+def test_canonical_averages_dtype_spanning_cluster(spanning_cluster):
+    dtype = percolate.hpc.canonical_averages_dtype(
         spanning_cluster=spanning_cluster
     )
     array = np.empty(1, dtype=dtype)
@@ -119,18 +119,18 @@ def test_macrocanonical_averages_dtype_spanning_cluster(spanning_cluster):
 
 
 @pytest.mark.parametrize("spanning_cluster", [True, False])
-def test_finalized_macrocanonical_averages_dtype(spanning_cluster):
-    dtype = percolate.hpc.finalized_macrocanonical_averages_dtype(
+def test_finalized_canonical_averages_dtype(spanning_cluster):
+    dtype = percolate.hpc.finalized_canonical_averages_dtype(
         spanning_cluster=spanning_cluster
     )
     np.empty(1, dtype=dtype)
 
 
 @pytest.mark.parametrize("spanning_cluster", [True, False])
-def test_finalized_macrocanonical_averages_dtype_spanning_cluster(
+def test_finalized_canonical_averages_dtype_spanning_cluster(
     spanning_cluster
 ):
-    dtype = percolate.hpc.finalized_macrocanonical_averages_dtype(
+    dtype = percolate.hpc.finalized_canonical_averages_dtype(
         spanning_cluster=spanning_cluster
     )
     array = np.empty(1, dtype=dtype)
@@ -338,14 +338,14 @@ def test_bond_microcanonical_statistics(percolation_graph, seed):
     seed=st.integers(min_value=0, max_value=MAX_SEED),
     p=st.floats(min_value=0.0, max_value=1.0),
 )
-def test_bond_macrocanonical_statistics(percolation_graph, seed, p):
+def test_bond_canonical_statistics(percolation_graph, seed, p):
     microcanonical_statistics = percolate.hpc.bond_microcanonical_statistics(
         seed=seed, **percolation_graph
     )
     convolution_factors = percolate.percolate._binomial_pmf(
         n=percolation_graph['num_edges'], p=p,
     )
-    result = percolate.hpc.bond_macrocanonical_statistics(
+    result = percolate.hpc.bond_canonical_statistics(
         microcanonical_statistics=microcanonical_statistics,
         convolution_factors=convolution_factors,
     )
@@ -386,7 +386,7 @@ def test_bond_macrocanonical_statistics(percolation_graph, seed, p):
         max_size=10,
     ),
 )
-def test_bond_initialize_macrocanonical_averages(percolation_graph, seed, ps):
+def test_bond_initialize_canonical_averages(percolation_graph, seed, ps):
     spanning_cluster = percolation_graph['spanning_cluster']
     microcanonical_statistics = percolate.hpc.bond_microcanonical_statistics(
         seed=seed, **percolation_graph
@@ -397,21 +397,21 @@ def test_bond_initialize_macrocanonical_averages(percolation_graph, seed, ps):
         )
         for p in ps
     ]
-    macrocanonical_statistics = np.fromiter(
+    canonical_statistics = np.fromiter(
         (
-            percolate.hpc.bond_macrocanonical_statistics(
+            percolate.hpc.bond_canonical_statistics(
                 microcanonical_statistics=microcanonical_statistics,
                 convolution_factors=my_convolution_factors,
             )
             for my_convolution_factors in convolution_factors
         ),
-        dtype=percolate.hpc.macrocanonical_statistics_dtype(
+        dtype=percolate.hpc.canonical_statistics_dtype(
             spanning_cluster=spanning_cluster
         ),
     )
-    assert macrocanonical_statistics.size == len(ps)
-    result = percolate.hpc.bond_initialize_macrocanonical_averages(
-        macrocanonical_statistics=macrocanonical_statistics
+    assert canonical_statistics.size == len(ps)
+    result = percolate.hpc.bond_initialize_canonical_averages(
+        canonical_statistics=canonical_statistics
     )
     assert (
         ('percolation_probability_mean' in result.dtype.names) ==
@@ -427,7 +427,7 @@ def test_bond_initialize_macrocanonical_averages(percolation_graph, seed, ps):
     if spanning_cluster:
         np.testing.assert_array_equal(
             result['percolation_probability_mean'],
-            macrocanonical_statistics['percolation_probability'],
+            canonical_statistics['percolation_probability'],
         )
         np.testing.assert_array_equal(
             result['percolation_probability_m2'],
@@ -435,7 +435,7 @@ def test_bond_initialize_macrocanonical_averages(percolation_graph, seed, ps):
         )
     np.testing.assert_array_equal(
         result['max_cluster_size_mean'],
-        macrocanonical_statistics['max_cluster_size'],
+        canonical_statistics['max_cluster_size'],
     )
     np.testing.assert_array_equal(
         result['max_cluster_size_m2'],
@@ -443,7 +443,7 @@ def test_bond_initialize_macrocanonical_averages(percolation_graph, seed, ps):
     )
     np.testing.assert_array_equal(
         result['moments_mean'],
-        macrocanonical_statistics['moments'],
+        canonical_statistics['moments'],
     )
     np.testing.assert_array_equal(
         result['moments_m2'],
@@ -478,21 +478,21 @@ def test_bond_reduce_incremental(percolation_graph, seeds, ps):
                 seed=seed, **percolation_graph
             )
         )
-        macrocanonical_statistics = np.fromiter(
+        canonical_statistics = np.fromiter(
             (
-                percolate.hpc.bond_macrocanonical_statistics(
+                percolate.hpc.bond_canonical_statistics(
                     microcanonical_statistics=microcanonical_statistics,
                     convolution_factors=my_convolution_factors,
                 )
                 for my_convolution_factors in convolution_factors
             ),
-            dtype=percolate.hpc.macrocanonical_statistics_dtype(
+            dtype=percolate.hpc.canonical_statistics_dtype(
                 spanning_cluster=spanning_cluster
             ),
         )
         initial_arrays.append(
-            percolate.hpc.bond_initialize_macrocanonical_averages(
-                macrocanonical_statistics=macrocanonical_statistics
+            percolate.hpc.bond_initialize_canonical_averages(
+                canonical_statistics=canonical_statistics
             )
         )
 
@@ -538,7 +538,7 @@ def test_bond_reduce_incremental(percolation_graph, seeds, ps):
     ),
     alpha=st.floats(min_value=0.01, max_value=0.31),
 )
-def test_finalize_macrocanonical_averages(percolation_graph, seeds, ps, alpha):
+def test_finalize_canonical_averages(percolation_graph, seeds, ps, alpha):
     spanning_cluster = percolation_graph['spanning_cluster']
     num_nodes = percolation_graph['num_nodes']
     convolution_factors = [
@@ -555,32 +555,32 @@ def test_finalize_macrocanonical_averages(percolation_graph, seeds, ps, alpha):
                 seed=seed, **percolation_graph
             )
         )
-        macrocanonical_statistics = np.fromiter(
+        canonical_statistics = np.fromiter(
             (
-                percolate.hpc.bond_macrocanonical_statistics(
+                percolate.hpc.bond_canonical_statistics(
                     microcanonical_statistics=microcanonical_statistics,
                     convolution_factors=my_convolution_factors,
                 )
                 for my_convolution_factors in convolution_factors
             ),
-            dtype=percolate.hpc.macrocanonical_statistics_dtype(
+            dtype=percolate.hpc.canonical_statistics_dtype(
                 spanning_cluster=spanning_cluster
             ),
         )
         initial_arrays.append(
-            percolate.hpc.bond_initialize_macrocanonical_averages(
-                macrocanonical_statistics=macrocanonical_statistics
+            percolate.hpc.bond_initialize_canonical_averages(
+                canonical_statistics=canonical_statistics
             )
         )
 
-    macrocanonical_averages = functools.reduce(
+    canonical_averages = functools.reduce(
         percolate.hpc.bond_reduce, initial_arrays,
     )
 
-    result = percolate.hpc.finalize_macrocanonical_averages(
+    result = percolate.hpc.finalize_canonical_averages(
         number_of_nodes=percolation_graph['num_nodes'],
         ps=ps,
-        macrocanonical_averages=macrocanonical_averages,
+        canonical_averages=canonical_averages,
         alpha=alpha,
     )
 
@@ -594,12 +594,12 @@ def test_finalize_macrocanonical_averages(percolation_graph, seeds, ps, alpha):
     if spanning_cluster:
         mean_key = 'percolation_probability_mean'
         np.testing.assert_array_equal(
-            result[mean_key], macrocanonical_averages[mean_key],
+            result[mean_key], canonical_averages[mean_key],
         )
         np.testing.assert_allclose(
             result['percolation_probability_std'],
             np.sqrt(
-                macrocanonical_averages['percolation_probability_m2'] /
+                canonical_averages['percolation_probability_m2'] /
                 (len(seeds) - 1)
             ),
         )
@@ -628,12 +628,12 @@ def test_finalize_macrocanonical_averages(percolation_graph, seeds, ps, alpha):
 
     np.testing.assert_allclose(
         result['percolation_strength_mean'],
-        macrocanonical_averages['max_cluster_size_mean'] / num_nodes,
+        canonical_averages['max_cluster_size_mean'] / num_nodes,
     )
     np.testing.assert_allclose(
         result['percolation_strength_std'],
         np.sqrt(
-            macrocanonical_averages['max_cluster_size_m2'] / (len(seeds) - 1)
+            canonical_averages['max_cluster_size_m2'] / (len(seeds) - 1)
         ) / num_nodes,
     )
     for bound, my_alpha in zip([0, 1], [alpha / 2, 1 - alpha / 2]):
@@ -661,12 +661,12 @@ def test_finalize_macrocanonical_averages(percolation_graph, seeds, ps, alpha):
 
     np.testing.assert_allclose(
         result['moments_mean'],
-        macrocanonical_averages['moments_mean'] / num_nodes,
+        canonical_averages['moments_mean'] / num_nodes,
     )
     np.testing.assert_allclose(
         result['moments_std'],
         np.sqrt(
-            macrocanonical_averages['moments_m2'] / (len(seeds) - 1)
+            canonical_averages['moments_m2'] / (len(seeds) - 1)
         ) / num_nodes,
     )
     for k in range(5):
