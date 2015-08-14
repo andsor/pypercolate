@@ -1,6 +1,8 @@
 Changelog
 =========
 
+* :release:`0.4.0 <2015-08-14>`
+* :feature:`0` Implement percolate.hpc module
 * :release:`0.3.1 <2015-08-14>`
 * :feature:`0` Configure continuous deployment to PyPI with Travis
 * :feature:`0` Restructure package development
