@@ -6,3 +6,5 @@ User Guide
    percolation-theory
    newman-ziff
    pypercolate
+   pypercolate-hpc
+   pypercolate-hpc-performance

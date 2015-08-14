@@ -60,6 +60,11 @@ subprocess.call(
     shell=True
 )
 
+subprocess.call(
+    "{} nbconvert --to rst --template _static/rst.tpl hpc-performance/pypercolate-hpc-performance.ipynb".format(IPYTHON),
+    shell=True
+)
+
 # If extensions (or modules to document with autodoc) are in another directory,
 # add these directories to sys.path here. If the directory is relative to the
 # documentation root, use os.path.abspath to make it absolute, like shown here.
@@ -179,6 +184,7 @@ html_theme_options = {
     'github_user': 'andsor',
     'github_repo': 'pypercolate',
     'extra_nav_links': extra_nav_links,
+    'code_font_size': '0.7em',
 }
 
 # Add any paths that contain custom themes here, relative to this directory.

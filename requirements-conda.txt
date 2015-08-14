@@ -1,5 +1,4 @@
 future
+networkx
 numpy
 scipy
-networkx
-simoa

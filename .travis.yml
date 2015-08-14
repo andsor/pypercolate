@@ -10,10 +10,11 @@ before_install:
 - bash miniconda.sh -b -p $HOME/miniconda
 - export PATH=/home/travis/miniconda/bin:$PATH
 - conda update --yes conda
-- conda create -n testenv --yes --file requirements.txt python=$TRAVIS_PYTHON_VERSION
+- conda create -n testenv --yes --file requirements-conda.txt python=$TRAVIS_PYTHON_VERSION
 - source activate testenv
 - conda install --yes pytest
-- pip install pytest-cov pytest-pep8
+- pip install -r requirements.txt
+- pip install -r requirements-test.txt
 - pip install coveralls
 - echo $PATH
 - which python
