@@ -29,13 +29,20 @@ script:
 after_success:
 - if [[ $TRAVIS_PYTHON_VERSION == "3.4" ]]; then coveralls; fi
 deploy:
-  provider: pypi
+- provider: pypi
   user: andsor
   password:
     secure: WtOdx2Yh57stkXNjmAw4TZRojDKUBGgmcYdW31b5vuD3ZzUelOnDYLmAC5rAh23P4ZPynhpJTjBRdLmyukQBMUP679jQCpOCcaDOAHSphfdrZD/PAMC3qgUWd0tEhUUDkeLa9Pi7hLOUFTxlbJUbrvOASHTWLjqYyEN9UsV6ISIX+mOHlRq3SOHTnAO/Nt/l6/gpfIX0r1rtbJKVpBcZKmjQpiBtNODxhkPBP7hOe08ZzYfX4zRB0lFjWtgGs7IR5vFKfB55TL261wTrDl9N6mELIVKOpcjjunaGCM/9iu1lMRDoBmmjJ+MzsMEVE9mo6BSi7FtR3wPXefLSTFGpxkjzY1hZdXuHAS3taM662LCkKyr0FPse1bZpS6xwpQC7pS6L3LPPNzt0DCRM6kMPuqBU1g8BSxF8l+3lPlTC9OQ2bFotIRV9kvTJ8uIOxqK5bpWtOj+CQh0WVSVfaXpb/UmcreZb5zzT3wH7V7zhzEuxDFIoaC1uBGkAiHhF3NrNx3iEw6jeD3R0/6PTHYy0m6B8cPRCGY4V6pJ6oiWxwd2NrfLIvEhBI6ASbK+2+0Uu+bDLQ0uYWCHP/IKJ01HZLbrYXv7liB3rYw8jeFn2ZoMGwNftGqbjOrDq14j5O3G5WGi4G1yABg7gsj+fz2nAQxJOIurRu+lxl3puRPA1tac=
+  distributions: sdist bdist_wheel
   on:
     tags: true
     repo: andsor/pypercolate
     python: 3.4
     branch: master
-    distributions: "sdist bdist_wheel"
+- provider: releases
+  api_key:
+    secure: IctzroDi7ReHR3gHJ+QBqjQCYmiMxVI7F5miVsmL7u/RdR0qf+FY+Q451kxYNZ4D8A0qtVW2dKaatXVnkX+1KftRq0CWPa0q1OIBj/QmhKFaE1VEBnhFreQ4yIqW4vnMY9ei2xilebvm8+8h7iZAf5CsU8Ou0o9fIMF9yuio602OtVbuCjqhTZRKQxd2RkVpqWJeuvjXnkX75ZzVbhKGD38gXkrxlJSZUnHhQOwJ1cmepHIE6mXFj+27zq4Y+bg9duExXyfqdkUAmkPF3L46RVA3p7AvheXsV+CGgijKYnao5I2ZdvVqfhBE1ENGBy+QdGAXH8PLM63fpn4aSO8j92viLirmtZ+9yynlPuoTj9+d5FWe7hl2NNB4PSn3mBwa5oUhMDHjWKy6xDSySq+Pqx2OgiPTX7k6lwXpFi0s/IGF+hHMrJwjKP8MrAWtxFmarsdu1jqYaWTswLJe0KpFrNxAEZzvI5yqh5UEItCtpZ70X3ysK1wepvKmRFJI1ZSVNJtPpSrhaby+sIfTh7biZ3Je9Gss5h6w0E3vpNOEik0AwE5FQj9ud6Nkk03BOJXrQYahanfD492u75EIwhgSyTcuzhCXeaL5YL+HYCv1FOwJBWCXsWtZaUOw5Q8N/XZosOhfzc/tz45LIm/LxcAHsUfjOq4NU05WqVQzkr8jZE8=
+  on:
+    tags: true
+    python: 3.4
+    branch: master
