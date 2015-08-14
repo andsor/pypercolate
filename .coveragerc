@@ -3,7 +3,6 @@
 branch = True
 source = percolate
 omit =
-    */_version.py
     */test/*
 
 [report]

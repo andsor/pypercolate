@@ -1,0 +1,11 @@
+-r requirements-doc.txt
+-r requirements-test.txt
+-r requirements.txt
+doit
+ipdb
+ipython[notebook,nbconvert]
+matplotlib
+memory_profiler
+pre-commit
+psutil
+wheel
