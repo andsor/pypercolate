@@ -1,41 +1,41 @@
 language: python
-
 python:
-  - "2.7"
-  - "3.4"
-
+- '2.7'
+- '3.4'
 before_install:
-  # download miniconda (for Python 2 or Python 3)
-  - if [ ${TRAVIS_PYTHON_VERSION:0:1} == "2" ]; then wget http://repo.continuum.io/miniconda/Miniconda-latest-Linux-x86_64.sh -O miniconda.sh; else wget http://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh -O miniconda.sh; fi
-  - chmod +x miniconda.sh
-  # install miniconda
-  - bash miniconda.sh -b -p $HOME/miniconda
-  - export PATH=/home/travis/miniconda/bin:$PATH
-  # update conda package manager
-  - conda update --yes conda
-  # create virtual environment
-  - conda create -n testenv --yes --file requirements.txt python=$TRAVIS_PYTHON_VERSION
-  # activate environment
-  - source activate testenv
-  # install test tools
-  - conda install --yes pytest
-  - pip install pytest-cov pytest-pep8
-  - pip install coveralls
-  # debugging info
-  - echo $PATH
-  - which python
-  - which pip
-  - which py.test
-  - python --version
-  - conda info
-  - conda list
-
+- if [ ${TRAVIS_PYTHON_VERSION:0:1} == "2" ]; then wget http://repo.continuum.io/miniconda/Miniconda-latest-Linux-x86_64.sh
+  -O miniconda.sh; else wget http://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh
+  -O miniconda.sh; fi
+- chmod +x miniconda.sh
+- bash miniconda.sh -b -p $HOME/miniconda
+- export PATH=/home/travis/miniconda/bin:$PATH
+- conda update --yes conda
+- conda create -n testenv --yes --file requirements.txt python=$TRAVIS_PYTHON_VERSION
+- source activate testenv
+- conda install --yes pytest
+- pip install pytest-cov pytest-pep8
+- pip install coveralls
+- echo $PATH
+- which python
+- which pip
+- which py.test
+- python --version
+- conda info
+- conda list
 install:
-  # install package
-  - python setup.py install
-
-script: 
-  - py.test
-
+- python setup.py install
+script:
+- py.test
 after_success:
-  - if [[ $TRAVIS_PYTHON_VERSION == "3.4" ]]; then coveralls; fi
+- if [[ $TRAVIS_PYTHON_VERSION == "3.4" ]]; then coveralls; fi
+deploy:
+  provider: pypi
+  user: andsor
+  password:
+    secure: WtOdx2Yh57stkXNjmAw4TZRojDKUBGgmcYdW31b5vuD3ZzUelOnDYLmAC5rAh23P4ZPynhpJTjBRdLmyukQBMUP679jQCpOCcaDOAHSphfdrZD/PAMC3qgUWd0tEhUUDkeLa9Pi7hLOUFTxlbJUbrvOASHTWLjqYyEN9UsV6ISIX+mOHlRq3SOHTnAO/Nt/l6/gpfIX0r1rtbJKVpBcZKmjQpiBtNODxhkPBP7hOe08ZzYfX4zRB0lFjWtgGs7IR5vFKfB55TL261wTrDl9N6mELIVKOpcjjunaGCM/9iu1lMRDoBmmjJ+MzsMEVE9mo6BSi7FtR3wPXefLSTFGpxkjzY1hZdXuHAS3taM662LCkKyr0FPse1bZpS6xwpQC7pS6L3LPPNzt0DCRM6kMPuqBU1g8BSxF8l+3lPlTC9OQ2bFotIRV9kvTJ8uIOxqK5bpWtOj+CQh0WVSVfaXpb/UmcreZb5zzT3wH7V7zhzEuxDFIoaC1uBGkAiHhF3NrNx3iEw6jeD3R0/6PTHYy0m6B8cPRCGY4V6pJ6oiWxwd2NrfLIvEhBI6ASbK+2+0Uu+bDLQ0uYWCHP/IKJ01HZLbrYXv7liB3rYw8jeFn2ZoMGwNftGqbjOrDq14j5O3G5WGi4G1yABg7gsj+fz2nAQxJOIurRu+lxl3puRPA1tac=
+  on:
+    tags: true
+    repo: andsor/pypercolate
+    python: 3.4
+    branch: master
+    distributions: "sdist bdist_wheel"
