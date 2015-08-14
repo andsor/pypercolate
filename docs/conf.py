@@ -42,7 +42,7 @@ root_pkg = namespace[0] if namespace else package
 namespace_pkg = ".".join([namespace[-1], package]) if namespace else package
 output_dir = os.path.join(__location__, "../docs/_rst")
 module_dir = os.path.join(__location__, "..", root_pkg)
-cmd_line_template = "sphinx-apidoc -f -o {outputdir} {moduledir}"
+cmd_line_template = "sphinx-apidoc -f -o {outputdir} {moduledir} {moduledir}/test"
 cmd_line = cmd_line_template.format(outputdir=output_dir, moduledir=module_dir)
 apidoc.main(cmd_line.split(" "))
 

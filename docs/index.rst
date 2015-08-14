@@ -14,5 +14,5 @@ Welcome to pypercolate!
    Tutorial <tutorial-bond-square-lattice>
    User Guide <user>
    Developer Guide <developer>
-   reference
+   Reference <_rst/percolate>
    zreferences
