@@ -1,6 +1,8 @@
 Changelog
 =========
 
+* :release:`0.3.1 <2015-08-14>`
+* :feature:`0` Configure continuous deployment to PyPI with Travis
 * :feature:`0` Restructure package development
 * :release:`v0.3.0 <2015-08-09>`
 * :feature:`0` Configure Travis, Coveralls, Landscape continuous integration

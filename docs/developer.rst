@@ -150,3 +150,15 @@ A `CiteULike group`_ manages the bibliography.
 To download the bibliography, run ::
 
     $ doit download_bib
+
+
+Continuous Integration
+----------------------
+
+pypercolate uses `Travis <https://travis-ci.org/andsor/pypercolate>`_ to run the tests on each commit.
+Travis also reports the test coverage to `Coveralls <https://coveralls.io/github/andsor/pypercolate>`_.
+If further deploys each tagged commit as a release to the Python Package Index (PyPI).
+
+`Landscape.io <https://landscape.io/github/andsor/pypercolate>`_ continuously measures "Code Health".
+
+`ReadTheDocs <https://readthedocs.org/projects/pypercolate/>`_ builds and hosts this documentation.
