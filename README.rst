@@ -50,6 +50,10 @@ pypercolate
   :target: http://pypercolate.readthedocs.org/en/stable
   :alt: Documentation
 
+.. image:: https://zenodo.org/badge/6089/andsor/pypercolate.svg
+   :target: https://zenodo.org/badge/latestdoi/6089/andsor/pypercolate
+   :alt: Citation
+
 Scientific Python package for Monte-Carlo simulation of percolation on graphs
 
 * **Documentation**: http://pypercolate.readthedocs.org
