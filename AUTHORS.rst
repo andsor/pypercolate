@@ -2,4 +2,4 @@
 Developers
 ==========
 
-* Andreas Sorge <as@asorge.de>
+* Andreas Sorge <pypercolate@asorge.de>
