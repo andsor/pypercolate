@@ -27,7 +27,7 @@ pypercolate
   :alt: Status
 
 .. image:: https://img.shields.io/pypi/l/percolate.svg
-  :target: http://andsor.github.io/pypercolate/license.html
+  :target: http://pypercolate.readthedocs.org/en/stable/license.html
   :alt: License
 
 .. image:: https://img.shields.io/github/release/andsor/pypercolate.svg

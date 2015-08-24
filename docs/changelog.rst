@@ -1,6 +1,8 @@
 Changelog
 =========
 
+* :release:`0.4.1 <2015-08-24>`
+* :bug:`0` Fix citation in documentation
 * :release:`0.4.0 <2015-08-14>`
 * :feature:`0` Implement percolate.hpc module
 * :release:`0.3.1 <2015-08-14>`
