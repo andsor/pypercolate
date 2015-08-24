@@ -156,14 +156,14 @@ def bond_sample_states(
     Notes
     -----
     Iterating through this generator is a single run of the Newman-Ziff
-    algorithm. [2]_
+    algorithm. [12]_
     The first iteration yields the trivial state with :math:`n = 0` occupied
     bonds.
 
     Spanning cluster
 
         In order to detect a spanning cluster, `graph` needs to contain
-        auxiliary nodes and edges, cf. Reference [2]_, Figure 6.
+        auxiliary nodes and edges, cf. Reference [12]_, Figure 6.
         The auxiliary nodes and edges have the ``'span'`` `attribute
         <http://networkx.github.io/documentation/latest/tutorial/tutorial.html#node-attributes>`_.
         The value is either ``0`` or ``1``, distinguishing the two sides of the
@@ -173,20 +173,20 @@ def bond_sample_states(
 
         The :math:`k`-th raw moment of the (absolute) cluster size distribution
         is :math:`\sum_s' s^k N_s`, where :math:`s` is the cluster size and
-        :math:`N_s` is the number of clusters of size :math:`s`. [3]_
+        :math:`N_s` is the number of clusters of size :math:`s`. [13]_
         The primed sum :math:`\sum'` signifies that the largest cluster is
-        excluded from the sum. [4]_
+        excluded from the sum. [14]_
 
     References
     ----------
-    .. [2] Newman, M. E. J. & Ziff, R. M. Fast monte carlo algorithm for site
+    .. [12] Newman, M. E. J. & Ziff, R. M. Fast monte carlo algorithm for site
         or bond percolation. Physical Review E 64, 016706+ (2001),
         `doi:10.1103/physreve.64.016706 <http://dx.doi.org/10.1103/physreve.64.016706>`_.
 
-    .. [3] Stauffer, D. & Aharony, A. Introduction to Percolation Theory (Taylor &
+    .. [13] Stauffer, D. & Aharony, A. Introduction to Percolation Theory (Taylor &
        Francis, London, 1994), second edn.
 
-    .. [4] Binder, K. & Heermann, D. W. Monte Carlo Simulation in Statistical
+    .. [14] Binder, K. & Heermann, D. W. Monte Carlo Simulation in Statistical
        Physics (Springer, Berlin, Heidelberg, 2010),
        `doi:10.1007/978-3-642-03163-2 <http://dx.doi.org/10.1007/978-3-642-03163-2>`_.
     '''
