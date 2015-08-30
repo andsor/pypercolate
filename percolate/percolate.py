@@ -918,7 +918,7 @@ def spanning_1d_chain(length):
     sample_states : spanning cluster detection
 
     """
-    ret = nx.grid_graph(dim=[length + 2])
+    ret = nx.grid_graph(dim=[int(length + 2)])
 
     ret.node[0]['span'] = 0
     ret[0][1]['span'] = 0
