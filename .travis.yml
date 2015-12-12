@@ -2,6 +2,7 @@ language: python
 python:
 - '2.7'
 - '3.4'
+- '3.5'
 before_install:
 - if [ ${TRAVIS_PYTHON_VERSION:0:1} == "2" ]; then wget http://repo.continuum.io/miniconda/Miniconda-latest-Linux-x86_64.sh
   -O miniconda.sh; else wget http://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh
@@ -28,7 +29,7 @@ install:
 script:
 - py.test
 after_success:
-- if [[ $TRAVIS_PYTHON_VERSION == "3.4" ]]; then coveralls; fi
+- if [[ $TRAVIS_PYTHON_VERSION == "3.5" ]]; then coveralls; fi
 deploy:
 - provider: pypi
   user: andsor
@@ -38,12 +39,12 @@ deploy:
   on:
     tags: true
     repo: andsor/pypercolate
-    python: 3.4
+    python: 3.5
     branch: master
 - provider: releases
   api_key:
     secure: IctzroDi7ReHR3gHJ+QBqjQCYmiMxVI7F5miVsmL7u/RdR0qf+FY+Q451kxYNZ4D8A0qtVW2dKaatXVnkX+1KftRq0CWPa0q1OIBj/QmhKFaE1VEBnhFreQ4yIqW4vnMY9ei2xilebvm8+8h7iZAf5CsU8Ou0o9fIMF9yuio602OtVbuCjqhTZRKQxd2RkVpqWJeuvjXnkX75ZzVbhKGD38gXkrxlJSZUnHhQOwJ1cmepHIE6mXFj+27zq4Y+bg9duExXyfqdkUAmkPF3L46RVA3p7AvheXsV+CGgijKYnao5I2ZdvVqfhBE1ENGBy+QdGAXH8PLM63fpn4aSO8j92viLirmtZ+9yynlPuoTj9+d5FWe7hl2NNB4PSn3mBwa5oUhMDHjWKy6xDSySq+Pqx2OgiPTX7k6lwXpFi0s/IGF+hHMrJwjKP8MrAWtxFmarsdu1jqYaWTswLJe0KpFrNxAEZzvI5yqh5UEItCtpZ70X3ysK1wepvKmRFJI1ZSVNJtPpSrhaby+sIfTh7biZ3Je9Gss5h6w0E3vpNOEik0AwE5FQj9ud6Nkk03BOJXrQYahanfD492u75EIwhgSyTcuzhCXeaL5YL+HYCv1FOwJBWCXsWtZaUOw5Q8N/XZosOhfzc/tz45LIm/LxcAHsUfjOq4NU05WqVQzkr8jZE8=
   on:
     tags: true
-    python: 3.4
+    python: 3.5
     branch: master
