@@ -2,6 +2,7 @@ Changelog
 =========
 
 
+* :release:`0.4.6 <2015-12-12>`
 * :bug:`0` Fix NumPy 1.10 casting error
 * :bug:`0` Add Python 3.5 compatibility
 
