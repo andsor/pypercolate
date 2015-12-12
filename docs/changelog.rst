@@ -1,6 +1,9 @@
 Changelog
 =========
 
+* :release:`0.4.5 <2015-12-12>`
+* :bug:`0` Fix Readthedocs notebook conversion
+
 * :release:`0.4.1 <2015-08-24>`
 * :bug:`0` Fix citation in documentation
 * :release:`0.4.0 <2015-08-14>`

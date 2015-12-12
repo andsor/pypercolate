@@ -57,11 +57,7 @@ apidoc.main(cmd_line.split(" "))
 # convert tutorial to rst
 import subprocess
 
-IPYTHON = (
-    'ipython' if not on_rtd
-    else
-    '/home/docs/checkouts/readthedocs.org/user_builds/pypercolate/envs/latest/bin/ipython3'
-)
+IPYTHON = 'jupyter'
 
 subprocess.call(
     "{} nbconvert --to rst tutorial-bond-square-lattice.ipynb".format(IPYTHON),
