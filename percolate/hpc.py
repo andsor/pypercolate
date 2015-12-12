@@ -212,7 +212,7 @@ def bond_sample_states(
 
     ret['n'] = 0
     ret['max_cluster_size'] = 1
-    ret['moments'] = np.ones(5) * (num_nodes - 1)
+    ret['moments'] = np.ones(5, dtype='uint64') * (num_nodes - 1)
 
     if spanning_cluster:
         ret['has_spanning_cluster'] = False
@@ -283,7 +283,7 @@ def bond_sample_states(
             for i in [0, 1]:
                 if roots[i] is max_cluster_root:
                     continue
-                ret['moments'] -= weights[i] ** np.arange(5)
+                ret['moments'] -= weights[i] ** np.arange(5, dtype='uint64')
 
             if max_cluster_root in roots:
                 # merged with maximum cluster
@@ -294,12 +294,14 @@ def bond_sample_states(
                 if ret['max_cluster_size'] >= weight:
                     # previously largest cluster remains largest cluster
                     # add merged cluster to moments
-                    ret['moments'] += weight ** np.arange(5)
+                    ret['moments'] += weight ** np.arange(5, dtype='uint64')
                 else:
                     # merged cluster overtook previously largest cluster
                     # add previously largest cluster to moments
                     max_cluster_root = root
-                    ret['moments'] += ret['max_cluster_size'] ** np.arange(5)
+                    ret['moments'] += ret['max_cluster_size'] ** np.arange(
+                        5, dtype='uint64'
+                    )
                     ret['max_cluster_size'] = weight
 
         yield ret
@@ -821,7 +823,7 @@ def finalize_canonical_averages(
         )
         (
             ret[key_ci][..., 0], ret[key_ci][..., 1]
-        ) = ([array.T for array in result] if transpose else result)
+        ) = ([my_array.T for my_array in result] if transpose else result)
 
     if spanning_cluster:
         _transform('percolation_probability')

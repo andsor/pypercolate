@@ -1,6 +1,10 @@
 Changelog
 =========
 
+
+* :bug:`0` Fix NumPy 1.10 casting error
+* :bug:`0` Add Python 3.5 compatibility
+
 * :release:`0.4.5 <2015-12-12>`
 * :bug:`0` Fix Readthedocs notebook conversion
 
